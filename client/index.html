@@ -5,30 +5,50 @@
     <meta charset="UTF-8">
     <title>A Single Page Application</title>
     <meta name="viewport" content="width=device-width">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+
 </head>
 
 <body>
-    <header>
+    <div class="sidebar">
+        <img class="logo-img" src="/client/img/logo.png" alt="">
+        <div class="option">
+          <img src="/client/img/family-icon.png" alt="">
+          <span class="option-title">משפחה</span>
+        </div>
+        <div class="option">
+          <img src="/client/img/schedule-icon.png" alt="">
+          <span class="option-title">לו"ז</span>
+        </div>
+        <div class="option">
+          <img src="/client/img/plus-icon.png" alt="">
+          <span class="option-title">הוסף פריט</span>
+        </div>
+        <div class="option">
+          <img src="/client/img/accom-icon.png" alt="">
+          <span class="option-title">הישגים</span>
+        </div>
+      </div>
+    <!-- <header>
         <img src="/client/img/logo.png" alt="מנקים ביחד">
-        <h1>שלום משפחת קהלני</h1>
-    </header>
+        <h1>שלום, </br> משפחת קהלני!</h1>
+    </header> -->
     <main>
-        <div class="page active" id="home">
+        <div class="page" id="home">
             <img class="home-img" src="/client/img/home-img.png" alt="מנקים ביחד - חווית נקיונות משפחתית">
-            <div id="enter-button">היכנס</div>
+            <button id="enter-button">היכנס</button>
         </div>
 
         <div class="page" id="list">
-            <h1>List</h1>
-
+            <div class="items-grid" id="items-grid">
+                <!--All the options for the learning games will appear here -->
+            </div>
         </div>
+    </div>
 
-        <div class="page" id="detail">
-            <h1>Detail</h1>
+        <div class="page active" id="detail">
 
 
         </div>

@@ -1,51 +1,121 @@
-/**** DEFAULTS ****/
+/*===== GOOGLE FONTS =====*/
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Rubik:wght@300;400;500;600&family=Varela+Round&display=swap');
 
+/*===== GENERAL =====*/
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Fredoka", sans-serif;
+:root {
+  
+    /*========== Colors ==========*/
+    --background-color: #E6E6E6;
+    --button-color: #EA3546;
+
+    --text-gray-color: #898989;
+
+    /*========== Font and typography ==========*/
+    --body-font: 'Fredoka', sans-serif;
+
+    --header-height: 95px;
 }
 
-html {
-    font-size: 20px;
-    /* 1rem will equal this now */
-    line-height: 1.6;
-    font-family: "Fredoka", sans-serif;
+/**** DEFAULTS ****/
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: var(--body-font);
+    background-color: var(--background-color);
 
+}
+
+.main {
+    position: relative;
+    top: calc(var(--header-height) + 1.5rem);
+    text-align: center;
+}
+
+
+.container {
+
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header {
-    background-color: rgb(214, 214, 214);
     display: flex;
-    justify-content: space-between;
-    align-items: begin;
-    height: 60px;
-    padding-right: 20px;
+    gap: 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100; 
+    background-color: rgb(173, 173, 173);
+    height: 95px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     padding-left: 20px;
-    padding-bottom: 10px;
+    padding-right: 20px;
 }
 
 header img {
-    height: 150%;
+    height: 130%;
 }
 
 header h1
 {
-    font-size: 100%;
+    font-size: 150%;
     font-weight: 400;
-    transition: all 0.4s;
-    align-self: center;
+    margin-left: 300px;
 }
+
+.sidebar {
+    width: 150px;
+    height: 100vh;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+  }
+
+  .option {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: width 0.5s ease, border-radius 0.5s; /* Transition width only */
+    background-color: #333;
+    height:18%;
+    gap: 7px;
+    
+  }
+
+  .option:hover {
+    width: 220px;
+    border-radius: 80px 0px 0px 80px;
+    flex-direction: row;
+      gap: 18px;
+  }
+
+  .option img {
+    width: 60px;
+    margin-right: 10px;
+  }
+
+  .option-title {
+    color: white;
+  }
+
+  .logo-img {
+    width: 110px;
+    align-self: center;
+  }
 
 /**** PAGES ****/
 .page {
     display: none;
-    width: 100%;
-    height: 100%;
+    width: 100vh;
+    height: 90vh;
     /* allow for content off the bottom of the page */
-    position: fixed;
     /* or absolute if the user needs to scroll for more content */
     padding: 1rem 2rem;
 }
@@ -56,29 +126,48 @@ header h1
 
 /**** HOME ****/
 
-.home-div {
-    
-}
-
 .home-img {
-    height: 100%;
-    width: auto;
+    height: 90%;
     margin: 20px;
+    top: 0px;
+    left: 0px;
 }
 
 #enter-button {
     background-color: rgb(47, 197, 97);
-    border: 2px solid black;
-    border-radius: 25px;
+    width: 300px;
+    height: 80px;
+    box-shadow: 5px;
+    border-radius: 50px;
     padding: 10px;
-    font-size: 1.5rem;
+    font-size: 200%;
     font-weight: 600;
+    font-family: var(--body-font);
     transition: all 0.4s;
     position: fixed;
+    bottom: 100px;
+    left: 100px;
+    }
+
+    #enter-button:hover {
+        background-color: rgb(82, 202, 122);
+        scale:1.1;
+    }
+
+
+#home-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
+  
+  .half-width {
+    flex: 1;
+    width: 50%;
+  }
 
 h1 {
-    font-family: "Fredoka", sans-serif;
     font-size: 2rem;
     font-weight: 600;
     transition: all 0.4s;
