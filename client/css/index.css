@@ -80,10 +80,11 @@ header h1
     flex: 0;
     width: var(--side-bar-width);
     height: 100vh;
-    background-color: #333;
+    background-color: white;
     display: flex;
     flex-direction: column;
     padding-top: 20px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   }
 
   .option {
@@ -94,7 +95,7 @@ header h1
     justify-content: center;
     cursor: pointer;
     transition: width 0.5s ease, border-radius 0.5s; /* Transition width only */
-    background-color: #333;
+    background-color: white;
     height:18%;
     gap: 7px;
     
@@ -113,7 +114,7 @@ header h1
   }
 
   .option-title {
-    color: white;
+    color: black;
   }
 
   .logo-img {
