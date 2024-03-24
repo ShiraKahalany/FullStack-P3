@@ -14,7 +14,7 @@
     /*========== Font and typography ==========*/
     --body-font: 'Fredoka', sans-serif;
 
-    --header-height: 95px;
+    --side-bar-width: 150px;
 }
 
 /**** DEFAULTS ****/
@@ -23,25 +23,35 @@ body {
     padding: 0px;
     font-family: var(--body-font);
     background-color: var(--background-color);
+    overflow-y: hidden;
 
 }
 
-.main {
-    position: relative;
-    top: calc(var(--header-height) + 1.5rem);
+main {
+    display: flex;
+    flex-direction: row;
     text-align: center;
 }
 
+.horizonal-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10%;
+}
 
-.container {
-
+/* .horizonal-container {
+    width: inherit;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    top:0px;
+} */
 
-header {
+/* header {
     display: flex;
     gap: 40px;
     position: fixed;
@@ -64,10 +74,11 @@ header h1
     font-size: 150%;
     font-weight: 400;
     margin-left: 300px;
-}
+} */
 
 .sidebar {
-    width: 150px;
+    flex: 0;
+    width: var(--side-bar-width);
     height: 100vh;
     background-color: #333;
     display: flex;
@@ -108,15 +119,14 @@ header h1
   .logo-img {
     width: 110px;
     align-self: center;
+    cursor: pointer;
   }
 
 /**** PAGES ****/
 .page {
     display: none;
-    width: 100vh;
-    height: 90vh;
-    /* allow for content off the bottom of the page */
-    /* or absolute if the user needs to scroll for more content */
+    right: calc(var(--side-bar-width) + 1.5rem);
+    height: 100vh;
     padding: 1rem 2rem;
 }
 
@@ -127,32 +137,34 @@ header h1
 /**** HOME ****/
 
 .home-img {
-    height: 90%;
+    width: 40%;
     margin: 20px;
-    top: 0px;
-    left: 0px;
 }
 
 #enter-button {
     background-color: rgb(47, 197, 97);
+    border-style: solid;
+    border-color: white;
+    border-width: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     width: 300px;
     height: 80px;
-    box-shadow: 5px;
     border-radius: 50px;
     padding: 10px;
     font-size: 200%;
     font-weight: 600;
     font-family: var(--body-font);
     transition: all 0.4s;
-    position: fixed;
-    bottom: 100px;
-    left: 100px;
-    }
+    cursor: pointer;
+    align-self: center;
+    justify-self: center;
+    top:0px;
+}
 
-    #enter-button:hover {
-        background-color: rgb(82, 202, 122);
-        scale:1.1;
-    }
+#enter-button:hover {
+    background-color: rgb(82, 202, 122);
+    scale:1.1;
+}
 
 
 #home-div {
@@ -177,3 +189,34 @@ h1 {
     font-size: 5rem;
     font-weight: 900;
 }
+
+.glowing-border {
+    border: 2px solid #dadada;
+    border-radius: 7px;
+}
+
+.glowing-border:focus { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+.login {
+    font-size: 24px; 
+    padding: 20px; 
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    /* border: 1px solid black; */
+    height: 60%;
+    width: 40%;
+  }
+  
+#login-frame{
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+
+  }
