@@ -38,3 +38,17 @@ const app = {
 
 document.addEventListener('DOMContentLoaded', app.init);
 
+const family = {
+    familyName: null,
+    password: null,
+    familyChildren: [],
+    itemsToClean: [],
+    startTime: null,
+}
+
+const itemToClean = {
+    itemName: null,
+    image: null,
+    responsible: null,
+    finishTime: null,
+}
