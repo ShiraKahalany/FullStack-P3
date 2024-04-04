@@ -126,9 +126,10 @@ header h1
 /**** PAGES ****/
 .page {
     display: none;
-    right: calc(var(--side-bar-width) + 1.5rem);
+    right: calc(var(--side-bar-width));
     height: 100vh;
-    padding: 1rem 2rem;
+    /* padding: 1rem 2rem; */
+    width: calc(100% - var(--side-bar-width));
 }
 
 .active {
@@ -136,6 +137,12 @@ header h1
 }
 
 /**** HOME ****/
+
+.login-div {
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+}
 
 .home-img {
     width: 40%;
@@ -221,3 +228,9 @@ h1 {
     height: 100%;
 
   }
+
+  #accom-frame {
+    width: 100%;
+    height: 100%;
+  }
+
