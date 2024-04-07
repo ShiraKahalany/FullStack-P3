@@ -51,4 +51,5 @@ const itemToClean = {
     image: null,
     responsible: null,
     finishTime: null,
+    deleted: false,
 }
