@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="login-box">
+        <h3 id="title1">זה הזמן להתחיל להנות מהנקיונות!</h3>
+        <h3 id="title2">הירשמו כדי להתחיל</h3>
+        <input class="glowing-border" id="familyName" type="text" placeholder="שם המשפחה">
+        <input class="glowing-border" id="childrenNames" type="text" placeholder="שמות הילדים (מופרדים בפסיקים)">
+        <input class="glowing-border" id="password" type="password" placeholder="סיסמא">
+        <input class="glowing-border" id="confirmPassword" type="password" placeholder="אימות סיסמא">
+        <button onclick="showSignup()">שמור</button>
+        <p>כבר רשומים?</p>
+        <button onclick="showlogin()">התחברו</button>
+    </div>
+</body>
+<script>
+    function showlogin() {
+        var iframe = parent.document.getElementById("login-frame");
+        iframe.src = "html/login.html";
+    }
+</script>
+<script src="/js/login.js"></script>
+<script src="../js/cookies.js"></script>
+</html>
