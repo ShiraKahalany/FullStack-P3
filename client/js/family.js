@@ -1,3 +1,7 @@
+/**in network.js will be the following funcs:
+ * deleteFamily() 
+ ***/
+
 const family = {
     familyName: "קהלני",
     password: "123456",
@@ -47,3 +51,21 @@ document.getElementById('add-child-btn').addEventListener('click', () => {
 
 // Initial rendering of children
 renderChildren();
+
+
+/*** delete Family Account ***/
+
+document.getElementById('delete-family-btn').addEventListener('click', async () => {
+    try {
+        const response = await deleteFamily(); // Call deleteFamily function from network.js
+        if (response.status === 200) {
+            alert('המשפחה נמחקה בהצלחה');
+            window.location.href = '../index.html'; // Redirect to index.html
+        } else {
+            alert('אירעה שגיאה במחיקת המשפחה');
+        }
+    } catch (error) {
+        console.error('Error deleting family:', error);
+        alert('אירעה שגיאה במחיקת המשפחה');
+    }
+});
