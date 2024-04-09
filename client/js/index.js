@@ -62,10 +62,43 @@ document.addEventListener('DOMContentLoaded', app.init);
 // Add an event listener to listen for messages from the iframe
 window.addEventListener('message', function(event) {
     // Check if the message is from the iframe and contains a successful login response
-    if (event.source === document.getElementById('login-frame').contentWindow && event.data === 'login-successful') {
+    if (event.source === document.getElementById('login-frame').contentWindow && 'login-successful' in event.data) {
         user_login = true;
         app.login_nav();
-        //family = getFamily(id);
+        const parts = event.data.split(' ');
+
+        // Extract the value of x from the second part of the split string
+        const fam_id = parseInt(parts[1]);
+        
+        
+    var request = new FXMLHttpRequest();
+    request.readystatechange = function() {
+        if (request.readyState === 4) {
+            if (request.status === 200) {
+                // Handle successful response
+                var response = JSON.parse(request.responseText);
+                // Check if the response indicates successful login
+                if (response.success) {
+                    // Redirect to family.html or perform any other action
+                    console.log("sucess");
+                } else {
+                    // Display error message to the user
+                    alert("שם המשתמש או הסיסמא שגויים או שיש בעיה בשרת :(");
+                }
+            } else {
+                // Handle request error
+                console.error("Error: " + request.status);
+            }
+        }
+    };
+    // Open connection
+    request.open('GET', fam_id, true);
+    // request.setRequestHeader('Content-Type', 'application/json');
+    // Send request with family name and password
+    request.send();
+
+
+    family = JSON.parse(request.responseText);
     }
 });
 

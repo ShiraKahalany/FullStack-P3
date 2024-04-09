@@ -28,19 +28,21 @@ function login() {
     // request.setRequestHeader('Content-Type', 'application/json');
     // Send request with family name and password
     request.send();
+
+
     var familyobj = JSON.parse(request.responseText);
    
     //const familyName = familyobj.familyName;
 
     if (familyobj.password === password) {
         // window.location.href = "../html/family.html";
-        window.parent.postMessage('login-successful', '*');
+        window.parent.postMessage('login-successful ${x}', '*');
         console.log('login successful');
     } else {
         alert("Invalid family name or password!");
     }
 
-    
+
     // Storing the familyobj object in localStorage
     // localStorage.setItem('familyObj', JSON.stringify(familyobj));
 
