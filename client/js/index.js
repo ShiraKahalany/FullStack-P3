@@ -22,6 +22,14 @@ const app = {
         history.pushState({}, currentPage, `#${currentPage}`);
         document.getElementById(currentPage).dispatchEvent(app.show);
     },
+    manual_nav: function(currentPage){
+        document.querySelector('.active').classList.remove('active');
+        document.getElementById(currentPage).classList.add('active');
+        console.log(currentPage)
+        history.pushState({}, currentPage, `#${currentPage}`);
+        document.getElementById(currentPage).dispatchEvent(app.show);
+    },
+
     pageShown: function(ev){
         console.log('Page', ev.target.id, 'just shown');
     },
