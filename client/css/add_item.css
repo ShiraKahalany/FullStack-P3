@@ -125,3 +125,20 @@ option {
     overflow: hidden;
     background-color: yellow;
 }
+
+.game-item-button {
+    position: absolute;
+    bottom: 15px; /* Distance from bottom */
+    height: 50px;
+    width: 85%;
+    border-radius: 25px;
+    font-family: var(--body-font);
+    font-size: 200%;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    color: white;
+    text-shadow:  2px 2px 4px rgba(0, 0, 0, 0.4);
+    background-color: var(--button-color);
+    cursor: pointer;
+    justify-self: end;
+}

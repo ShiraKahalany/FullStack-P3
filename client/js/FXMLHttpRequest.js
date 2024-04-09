@@ -1,6 +1,9 @@
+import { sendToNetwork } from '../../network.js';
+
 //object are used to interact with servers
 
-class FXMLHttpRequest {
+
+export class FXMLHttpRequest {
 
     //The constructor initializes an FXMLHttpRequest. It must be called before any other method calls.
     constructor() {
@@ -29,7 +32,7 @@ class FXMLHttpRequest {
         this.responseURL = '';
 
         //The time in milliseconds a request can take before automatically being terminated.
-        this.timeout = 1000;
+        this.timeout = 0;
 
         //Returns true if cross-site Access-Control requests 
         //should be made using credentials such as cookies or authorization headers; otherwise false.
@@ -95,7 +98,9 @@ class FXMLHttpRequest {
 
         sendToNetwork(this, data);
 
+        this.InnerSetTimeOut();
         this.dispatchEvent('load');
+        this.readyState = 2;
     }
 
     abort() {
@@ -134,6 +139,12 @@ class FXMLHttpRequest {
             throw new Error('Invalid event type');
         }
         this._listeners[type].forEach(listener => listener());
+    }
+
+    InnerSetTimeOut() {
+        setTimeout(() => {
+            this.dispatchEvent('timeout');
+        }, this.timeout);
     }
 }
 

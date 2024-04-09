@@ -1,3 +1,6 @@
+import { FXMLHttpRequest } from './FXMLHttpRequest.js';
+
+document.getElementById('login-button').addEventListener('click', login);
 
 function login() {
     var familyName = document.getElementById("username").value;

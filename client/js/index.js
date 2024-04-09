@@ -102,7 +102,7 @@ window.addEventListener('message', function(event) {
     }
 });
 
-const family = {
+const family1 = {
     family_id:0 ,
     familyName: null,
     password: null,

@@ -7,7 +7,7 @@ body {
     font-family: 'Fredoka', sans-serif;
 }
 
-input {
+input, select {
     width: 80%;
     padding: 12px;
     margin: 8px 0;
@@ -130,4 +130,47 @@ label {
     color: #E64543;
 }
 
+#title-add2
+{
+    color: black;
+}  
 
+#title-add1
+{
+    color:#4CAF50;
+}
+
+#item-responsible, #itemName {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.photo-gallery {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.photo-gallery img {
+    height: 200px;
+    width: auto;
+    border-radius: 10px;
+}
+
+.arrow {
+    cursor: pointer;
+    width: 50px;
+}
+
+
+.horizonal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-grow: 1; /* Allow the container to grow */
+}
+
+.selected {
+    border: 3px solid #4CAF50;
+  }

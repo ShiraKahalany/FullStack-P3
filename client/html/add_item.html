@@ -5,11 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הוסף פריט</title>
-    <link rel="stylesheet" href="../css/add_item.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 
 <body>
-    <div class="main-container">
+    <div class="login-box">
+        <h1 id="title-add1">זה הזמן להתחיל להנות מהנקיונות!</h1>
+        <h3 id="title-add2">כתבו כאן את מה שדורש ניקוי:</h3>
+        <input class="glowing-border" id="itemName" type="text" placeholder="לדוגמה: מגירת הנעליים">
+        <h3 id="title-add">שבצו את האחראי:</h3>
+        <select class="glowing-border" id="item-responsible">
+            <option value="1">אורי</option>
+            <option value="2">דני</option>
+            <option value="3">מוישי</option>
+        </select>
+        <h3>פה אפשר לבחור תמונה מתאימה (רק אם רוצים)</h3>
+        <div class="horizonal-container">
+        <img src="../img/right.png" alt="right" id="right-arrow" class="arrow">
+        <div class="photo-gallery">
+            <!-- <img src="https://via.placeholder.com/150" alt="Image 1" class="gallery-image">
+            <img src="https://via.placeholder.com/150" alt="Image 2" class="gallery-image">
+            <img src="https://via.placeholder.com/150" alt="Image 3" class="gallery-image"> -->
+        </div>
+        <img src="../img/left.png" alt="left" id="left-arrow" class="arrow">
+
+    </div>
+        <button id="login-button">הוסף לרשימה</button>
+    </div>
+
+
+    <!-- <div class="main-container">
         <h1>כאן מוסיפים את מה שצריך לנקות</h1>
         <div class="horizonal-container root-con">
             <div class="vertical-container">
@@ -33,12 +58,11 @@
                     <img src="https://via.placeholder.com/150" alt="Image 2" class="gallery-image">
                     <img src="https://via.placeholder.com/150" alt="Image 3" class="gallery-image">
 
-                    <!-- Add more images here -->
                 </div>
             </div>
         </div>
         <button id="add-item-btn">להוסיף לרשימה</button>
-    </div>
+    </div> -->
 </body>
 <script src="../js/add_item.js"></script>
 

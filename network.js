@@ -1,6 +1,11 @@
 // network.js
+import { Server } from './server/server.js';
 
 export function sendToNetwork(fxml, data) {
+
+    console.log('sendToNetwork called');
+    const method = fxml.method;
+    const url = fxml.url;
     switch(method)
     {
         case 'GET':
@@ -15,6 +20,8 @@ export function sendToNetwork(fxml, data) {
         case 'DELETE':
             Server.DELETE(url, data);
             break;
+        default:
+            console.error('Invalid method');
     }
 }
 
