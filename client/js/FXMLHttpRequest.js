@@ -1,3 +1,5 @@
+const sendToNetwork = require('./network.js');
+
 //object are used to interact with servers
 
 class FXMLHttpRequest {
@@ -29,7 +31,7 @@ class FXMLHttpRequest {
         this.responseURL = '';
 
         //The time in milliseconds a request can take before automatically being terminated.
-        this.timeout = 0;
+        this.timeout = 1000;
 
         //Returns true if cross-site Access-Control requests 
         //should be made using credentials such as cookies or authorization headers; otherwise false.
@@ -92,7 +94,9 @@ class FXMLHttpRequest {
         if (this.readyState !== 1) {
             throw new Error('Invalid state');
         }
-        //send logic here
+
+        sendToNetwork(this, data);
+
         this.dispatchEvent('load');
     }
 
