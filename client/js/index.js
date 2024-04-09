@@ -1,3 +1,6 @@
+var user_login = false;
+var family;
+
 const app = {
     pages: [],
     show: new Event('show'),
@@ -11,7 +14,25 @@ const app = {
             link.addEventListener('click', app.nav);
         })
         history.replaceState({}, 'Home', '#home');
+        
+
+        app.login_nav();
+
+        //when the back button is clicked
         window.addEventListener('popstate', app.poppin);
+    },
+    login_nav: function() {
+        if(user_login == true) 
+        {
+            document.querySelector('.active').classList.remove('active');
+            document.getElementById('home').classList.add('active');
+        }
+        else
+        {
+            document.querySelector('.active').classList.remove('active');
+            document.getElementById('login').classList.add('active');
+        }
+    
     },
     nav: function(ev){
         ev.preventDefault();
@@ -22,14 +43,6 @@ const app = {
         history.pushState({}, currentPage, `#${currentPage}`);
         document.getElementById(currentPage).dispatchEvent(app.show);
     },
-    manual_nav: function(currentPage){
-        document.querySelector('.active').classList.remove('active');
-        document.getElementById(currentPage).classList.add('active');
-        console.log(currentPage)
-        history.pushState({}, currentPage, `#${currentPage}`);
-        document.getElementById(currentPage).dispatchEvent(app.show);
-    },
-
     pageShown: function(ev){
         console.log('Page', ev.target.id, 'just shown');
     },
@@ -44,9 +57,17 @@ const app = {
     }
 }
 
-window.app = app;
-
 document.addEventListener('DOMContentLoaded', app.init);
+
+// Add an event listener to listen for messages from the iframe
+window.addEventListener('message', function(event) {
+    // Check if the message is from the iframe and contains a successful login response
+    if (event.source === document.getElementById('login-frame').contentWindow && event.data === 'login-successful') {
+        user_login = true;
+        app.login_nav();
+        //family = getFamily(id);
+    }
+});
 
 const family = {
     family_id:0 ,

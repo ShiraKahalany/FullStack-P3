@@ -6,4 +6,3 @@ function sendToNetwork(fxml, data) { //fxml.url
     Server.func()
 }
 
-module.exports = sendToNetwork;

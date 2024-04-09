@@ -1,7 +1,3 @@
-import { FXMLHttpRequest } from './FXMLHttpRequest.js';
-import { app } from "../index.html";
-
-
 
 function login() {
     var familyName = document.getElementById("username").value;
@@ -38,7 +34,8 @@ function login() {
 
     if (familyobj.password === password) {
         // window.location.href = "../html/family.html";
-        app.manual_nav('list');
+        window.parent.postMessage('login-successful', '*');
+        console.log('login successful');
     } else {
         alert("Invalid family name or password!");
     }
