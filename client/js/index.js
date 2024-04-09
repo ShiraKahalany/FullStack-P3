@@ -49,19 +49,20 @@ window.app = app;
 document.addEventListener('DOMContentLoaded', app.init);
 
 const family = {
+    family_id:0 ,
     familyName: null,
     password: null,
     familyChildren: [],
-    itemsToClean: [],
-    startTime: null,
+    startTime: null
 }
 
 const itemToClean = {
+    family_id: 0,
     itemName: null,
     image: null,
     responsible: null,
     finishTime: null,
-    deleted: false,
+    deleted: false
 }
 
 
