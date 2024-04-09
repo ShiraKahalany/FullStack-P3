@@ -27,7 +27,7 @@ function login() {
         }
     };
     // Open connection
-    request.open('GET', familyName, true);
+    request.open('GET', families, true);
     // request.setRequestHeader('Content-Type', 'application/json');
     // Send request with family name and password
     request.send();
