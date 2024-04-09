@@ -46,4 +46,5 @@ const itemsToCleanData = [
 // Store data in local storage
 localStorage.setItem('families', JSON.stringify(familiesData));
 localStorage.setItem('itemsToClean', JSON.stringify(itemsToCleanData));
+localStorage.setItem('running_id', JSON.stringify(5));
 

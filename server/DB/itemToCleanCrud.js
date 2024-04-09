@@ -1,16 +1,21 @@
-// Function to add an item to clean to local storage
+function getAllItemsToClean() {
+    return JSON.parse(localStorage.getItem('itemsToClean')) || [];
+}
+
 function addItemToClean(item) {
     const storedItemsToClean = JSON.parse(localStorage.getItem('itemsToClean')) || [];
     storedItemsToClean.push(item);
     localStorage.setItem('itemsToClean', JSON.stringify(storedItemsToClean));
 }
 
-// Function to delete an item to clean from local storage
-function deleteItemToClean(itemName) {
+function deleteItemToClean(itemToDelete) {
     const storedItemsToClean = JSON.parse(localStorage.getItem('itemsToClean')) || [];
-    const updatedItemsToClean = storedItemsToClean.filter(item => item.itemName !== itemName);
+    const updatedItemsToClean = storedItemsToClean.filter(item => {
+        return item.family_id !== itemToDelete.family_id || item.itemName !== itemToDelete.itemName;
+    });
     localStorage.setItem('itemsToClean', JSON.stringify(updatedItemsToClean));
 }
+
 
 // Function to update an item to clean in local storage
 function updateItemToClean(updatedItem) {
@@ -25,7 +30,5 @@ function updateItemToClean(updatedItem) {
     localStorage.setItem('itemsToClean', JSON.stringify(updatedItemsToClean));
 }
 
-// Function to read all items to clean from local storage
-function getAllItemsToClean() {
-    return JSON.parse(localStorage.getItem('itemsToClean')) || [];
-}
+
+
