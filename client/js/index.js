@@ -1,4 +1,4 @@
-var user_login = false;
+var user_login = true;
 var family;
 
 const app = {
@@ -26,11 +26,13 @@ const app = {
         {
             document.querySelector('.active').classList.remove('active');
             document.getElementById('home').classList.add('active');
+            document.getElementById('side-overlay').style.display = 'none';
         }
         else
         {
             document.querySelector('.active').classList.remove('active');
             document.getElementById('login').classList.add('active');
+            document.getElementById('side-overlay').style.display = 'absolute';
         }
     
     },

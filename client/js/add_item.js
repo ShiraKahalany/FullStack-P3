@@ -1,21 +1,3 @@
-// function addSelectedClick() {
-// document.addEventListener('DOMContentLoaded', () => {
-//     const images = document.querySelectorAll('.gallery-image');
-
-//     images.forEach(image => {
-//       image.addEventListener('click', () => {
-//         const isSelected = image.classList.contains('selected');
-
-//         images.forEach(img => img.classList.remove('selected'));
-
-//         if (!isSelected) {
-//           image.classList.add('selected');
-//         }
-//       });
-//     });
-//   });
-
-// }
 
 const images = [
   '../img/item1.png',
@@ -76,4 +58,6 @@ function goGalleryItems() {
 
 }
 
-// Example usage: createGalleryItems(1, 2, 3);
+goGalleryItems();
+
+
