@@ -1,21 +1,9 @@
-/**in network.js will be the following funcs:
- * deleteFamily() 
- ***/
 
-const family = {
-    familyName: "קהלני",
-    password: "123456",
-    familyChildren: ["שי", "רון", "רות", "דניאל", "רועי", "שירה", "אופיר"],
-    itemsToClean: [
-        { itemName: "מקרר", image: "../client/img/נקה ביתך לפסח (9).png", responsible: null, finishTime: null },
-        { itemName: "מיטה", image: "../client/img/נקה ביתך לפסח (2).png", responsible: null, finishTime: null },
-        { itemName: "ספה", image: "../client/img/נקה ביתך לפסח (3).png", responsible: null, finishTime: null },
-        { itemName: "ארון", image: "../client/img/נקה ביתך לפסח (4).png", responsible: null, finishTime: null }
-    ],
-    startTime: null
-}
+// Retrieving the familyobj object from localStorage
+const familyObj = JSON.parse(localStorage.getItem('familyObj'));
 
-const childrenList = document.getElementById('children-list');
+
+const childrenList = familyObj.familyChildren;
 
 // Function to render children names
 function renderChildren() {
@@ -37,6 +25,8 @@ function removeChild(childName) {
     if (index !== -1) {
         family.familyChildren.splice(index, 1);
         renderChildren();
+        // Send updated family data to the server
+        updateFamilyData();
     }
 }
 
@@ -46,26 +36,44 @@ document.getElementById('add-child-btn').addEventListener('click', () => {
     if (newChildName) {
         family.familyChildren.push(newChildName);
         renderChildren();
+        // Send updated family data to the server
+        updateFamilyData();
     }
 });
 
 // Initial rendering of children
 renderChildren();
 
-
-/*** delete Family Account ***/
-
-document.getElementById('delete-family-btn').addEventListener('click', async () => {
-    try {
-        const response = await deleteFamily(); // Call deleteFamily function from network.js
-        if (response.status === 200) {
-            alert('המשפחה נמחקה בהצלחה');
-            window.location.href = '../index.html'; // Redirect to index.html
-        } else {
-            alert('אירעה שגיאה במחיקת המשפחה');
+// Function to update family data on the server
+function updateFamilyData() {
+    const request = new FXMLHttpRequest();
+    request.open('PUT', 'your_server_url/updateFamily', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.onreadystatechange = function() {
+        if (request.readyState === 4) {
+            if (request.status !== 200) {
+                console.error('Error updating family data:', request.statusText);
+                alert('אירעה שגיאה בעדכון המידע');
+            }
         }
-    } catch (error) {
-        console.error('Error deleting family:', error);
-        alert('אירעה שגיאה במחיקת המשפחה');
-    }
+    };
+    request.send(JSON.stringify(family));
+}
+
+// Function to delete family account
+document.getElementById('delete-family-btn').addEventListener('click', () => {
+    const request = new FXMLHttpRequest();
+    request.open('DELETE', 'your_server_url/deleteFamily', true);
+    request.onreadystatechange = function() {
+        if (request.readyState === 4) {
+            if (request.status === 200) {
+                alert('המשפחה נמחקה בהצלחה');
+                window.location.href = '../index.html'; // Redirect to index.html
+            } else {
+                console.error('Error deleting family:', request.statusText);
+                alert('אירעה שגיאה במחיקת המשפחה');
+            }
+        }
+    };
+    request.send();
 });
