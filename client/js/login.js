@@ -1,6 +1,8 @@
 import { FXMLHttpRequest } from './FXMLHttpRequest.js';
 import { app } from "../index.html";
 
+
+
 function login() {
     var familyName = document.getElementById("username").value;
     var password = document.getElementById("password").value;
@@ -36,13 +38,14 @@ function login() {
 
     if (familyobj.password === password) {
         // window.location.href = "../html/family.html";
+        app.manual_nav('list');
     } else {
         alert("Invalid family name or password!");
     }
 
-
+    
     // Storing the familyobj object in localStorage
-    localStorage.setItem('familyObj', JSON.stringify(familyobj));
+    // localStorage.setItem('familyObj', JSON.stringify(familyobj));
 
     
 }

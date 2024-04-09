@@ -15,7 +15,8 @@
         <h3 id="title2">התחברו כדי להתחיל</h3>
         <input class="glowing-border" id="username" type="text" placeholder="שם משפחה">
         <input class="glowing-border" id="password" type="password" placeholder="סיסמא">
-        <button id="login-button" onclick="login()">מתחילים!</button>
+        <button id="login-button">מתחילים!</button>
+        <!-- onclick="login()" -->
         <p>עדיין לא רשומים אצלינו?</p>
         <button onclick="showSignup()">הירשמו עכשיו</button>
     </div>
@@ -27,8 +28,10 @@
         iframe.src = "html/signup.html";
     }
 </script>
-<script src="/js/login.js"></script>
-<script src="../js/cookies.js"></script>
+<!-- <script src="../js/login.js"></script> -->
+<script type="module" src="../js/login.js"></script>
+
+<!-- <script src="../js/cookies.js"></script> -->
 
 
 </html>
