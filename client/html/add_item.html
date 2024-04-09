@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הוסף פריט</title>
     <link rel="stylesheet" href="../css/add_item.css">
 </head>
+
 <body>
     <div class="main-container">
-    <h1>כאן מוסיפים את מה שצריך לנקות</h1>
-    <span>מה צריך לנקות?</span>
-    <input type="text" id="item-name" placeholder="שם הפריט. לדוגמה: מגירת הנעליים בחדר ילדים">
-    <span>מי אחראי לעשות את זה?</span>
-    <select id="item-responsible">
-        <option value="1">אורי</option>
-        <option value="2">דני</option>
-        <option value="3">מוישי</option>
-    </select>
-    <span>פה אפשר לבחור תמונה מתאימה (רק אם רוצים)</span>
-    <div class="photo-gallery">
-        <img src="https://via.placeholder.com/150" alt="Image 1" class="gallery-image">
-        <img src="https://via.placeholder.com/150" alt="Image 2" class="gallery-image">
-        <img src="https://via.placeholder.com/150" alt="Image 3" class="gallery-image">
-       
-      <!-- Add more images here -->
-      </div>
-    <button id="add-item-btn">להוסיף לרשימה</button>
-</div>
+        <h1>כאן מוסיפים את מה שצריך לנקות</h1>
+        <div class="horizonal-container root-con">
+            <div class="vertical-container">
+                <div class="input-box">
+                    <span>מה צריך לנקות?</span>
+                    <input type="text" id="item-name" placeholder="שם הפריט. לדוגמה: מגירת הנעליים בחדר ילדים">
+                </div>
+                <div class="input-box">
+                    <span>מי אחראי לעשות את זה?</span>
+                    <select id="item-responsible">
+                        <option value="1">אורי</option>
+                        <option value="2">דני</option>
+                        <option value="3">מוישי</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-box">
+                <span>פה אפשר לבחור תמונה מתאימה (רק אם רוצים)</span>
+                <div class="photo-gallery">
+                    <img src="https://via.placeholder.com/150" alt="Image 1" class="gallery-image">
+                    <img src="https://via.placeholder.com/150" alt="Image 2" class="gallery-image">
+                    <img src="https://via.placeholder.com/150" alt="Image 3" class="gallery-image">
+
+                    <!-- Add more images here -->
+                </div>
+            </div>
+        </div>
+        <button id="add-item-btn">להוסיף לרשימה</button>
+    </div>
 </body>
+<script src="../js/add_item.js"></script>
+
 </html>

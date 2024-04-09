@@ -1,7 +1,6 @@
 // network.js
 
-function sendToNetwork(fxml, data) {
+export function sendToNetwork(fxml, data) {
     // Function implementation
 }
 
-module.exports = sendToNetwork;

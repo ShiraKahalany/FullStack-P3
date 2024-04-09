@@ -1,5 +1,3 @@
-const sendToNetwork = require('./network.js');
-
 //object are used to interact with servers
 
 class FXMLHttpRequest {
