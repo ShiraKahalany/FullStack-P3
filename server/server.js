@@ -1,22 +1,31 @@
-import { getAllFamilies } from './DB/familyCrud';
+import * as familyCrud from './DB/familyCrud.js';
 
 export const Server = {
-  GET: (url, data) => {
-    if (url === 'families') { // Check if the URL is for retrieving families
-        const families = getAllFamilies();
-        console.log('GET families called', families);
-        // Send the retrieved families back to the client
-        // Assuming here that you're using Express.js, you can send the families as JSON
-        res.json(families);
-    }
+  GET: (fxml, data) => {
+    if (fxml.url === 'families') { // Check if the URL is for retrieving families
+      const families = familyCrud.getAllFamilies(); //families is json object
+      // console.log('GET families called', families);
+      fxml.response = families;
+      if(fxml.response){
+        fxml.readyState = 4;
+        fxml.status = 200;
+      }
+      console.log('fxml.response :',fxml.response);
+      
+      // Send the retrieved families back to the client
+      // Assuming here that you're using Express.js, you can send the families as JSON
+      // res.json(families); // Uncomment this line if you're using Express.js
+  }  
 },
-  POST: (url, data) => {
-    console.log('POST called');
+  POST: (fxml, data) => {
+    if (fxml.url === 'families') { // Check if the URL is for retrieving families
+      familyCrud.addFamily(data); //data is json object
+      fxml.status  = 200;
+  } 
   },
-  PUT: (url, data) => {
-    console.log('PUT called');
+  PUT: (fxml, data) => { 
   },
-  DELETE: (url, data) => {
+  DELETE: (fxml, data) => {
     console.log('DELETE called');
   }
 };

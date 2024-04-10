@@ -20,34 +20,46 @@ function login() {
     }
 
     var request = new FXMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            const families = JSON.parse(request.responseText);
-            console.log(families);
-            // Do something with the received data here
-        }
-    };
-
-    // Open connection
-    request.open('GET', 'families', true);
-    request.send();
-
-    
-    // var params = "id=1&name=John"; // Parameters to be sent in the request body
-
-    // xhr.open("PUT", url, true);
-    // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//זה בעצם אומר לשרת איזה סוג נתונים הועבר. הפרמטר השני שאת רואה מסמל את הסוג"id=1&name=John" של הנתון הזה 
-
-    // xhr.onreadystatechange = function () {
-    // if (xhr.readyState == 4 && xhr.status == 200) {
-    //     console.log(xhr.responseText);
-    // }
+    // request.onreadystatechange = function () {
+    //     if (request.readyState == 4 && request.status == 200) {
+    //         console.log("yesssssss");
+    //         const families = JSON.parse(request.response);
+    //         console.log(families);
+    //         // Do something with the received data here
+    //     }
     // };
 
-    // xhr.send(params);
+    request.open('GET', 'families', true);
+    const fxml = request.send();
+    console.log("from login:",fxml);
+    // console.log("yes",modifiedRequest.response);
+    const storedFamilies = fxml.response;
+    const family = storedFamilies.find(family => family.familyName === familyName) || null;
+    // window.family__id = family.family_id;
+    if(family==null){
+        alert("שם המשפחה אינו קיים");
+        return;
+    }
+    if (family && family.password === password) {
+        // Dispatch a custom event indicating successful login
+        // const loginEvent = new CustomEvent('userLoggedIn');
+        // console.log("here in dispatchEvent");
+        // window.dispatchEvent(loginEvent);
+        // Redirect or perform actions after successful login
+        user_login =true;
+        user_family_id = family.family_id;
+        console.log("user_login:",user_login,"user_family_id:",user_family_id);
+        window.location.href = "../html/list.html?family=" + encodeURIComponent(JSON.stringify(family));
+    } else {
+        alert("הסיסמא שגויה או שם המשפחה אינו קיים");
+    }
+            
 }
 
 function showSignup() {
     var iframe = parent.document.getElementById("login-frame");
     iframe.src = "html/signup.html";
+    
 }
+
+

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/signup.js" type="module" defer></script>
+    <script src="../js/FXMLHttpRequest.js" type="module" defer></script>
+    <script src="../js/index.js" type="module" defer></script>
 </head>
 <body>
     <div class="login-box">
@@ -14,17 +17,9 @@
         <input class="glowing-border" id="childrenNames" type="text" placeholder="שמות הילדים (מופרדים בפסיקים)">
         <input class="glowing-border" id="password" type="password" placeholder="סיסמא">
         <input class="glowing-border" id="confirmPassword" type="password" placeholder="אימות סיסמא">
-        <button onclick="showSignup()">שמור</button>
+        <button id="keep-button">שמור</button>
         <p>כבר רשומים?</p>
-        <button onclick="showlogin()">התחברו</button>
+        <button id="backTologin-button">התחברו</button>
     </div>
 </body>
-<script>
-    function showlogin() {
-        var iframe = parent.document.getElementById("login-frame");
-        iframe.src = "html/login.html";
-    }
-</script>
-<script src="/js/login.js"></script>
-<script src="../js/cookies.js"></script>
 </html>

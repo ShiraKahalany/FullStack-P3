@@ -1,4 +1,9 @@
 export function addFamily(family) {
+    // Parse the JSON string into an object if family is a string
+    if (typeof family === 'string') {
+        family = JSON.parse(family);
+    }
+
     let storedFamilies = JSON.parse(localStorage.getItem('families')) || [];
     let running_id = parseInt(localStorage.getItem('running_id')) || 0;
     ++running_id; // Increase the running number by 1
@@ -7,6 +12,7 @@ export function addFamily(family) {
     localStorage.setItem('families', JSON.stringify(storedFamilies));
     localStorage.setItem('running_id', running_id); // Update the running number in localStorage
 }
+
 
 
 export function getAllFamilies() {

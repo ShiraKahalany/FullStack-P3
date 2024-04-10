@@ -96,11 +96,12 @@ export class FXMLHttpRequest {
             throw new Error('Invalid state');
         }
 
-        sendToNetwork(this, data);
-
         this.InnerSetTimeOut();
         this.dispatchEvent('load');
-        this.readyState = 2;
+        // this.readyState = 2;
+        // console.log(this,data);
+        sendToNetwork(this, data);
+        return this;       
     }
 
     abort() {
