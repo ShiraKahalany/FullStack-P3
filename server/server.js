@@ -24,9 +24,12 @@ export const Server = {
   } 
   },
   PUT: (fxml, data) => { 
+    familyCrud.updateFamily(data);
+    fxml.status  = 200;
   },
   DELETE: (fxml, data) => {
-    console.log('DELETE called');
+    familyCrud.deleteFamily(data);
+    fxml.status  = 200;
   }
 };
 

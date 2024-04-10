@@ -1,3 +1,105 @@
+import { FXMLHttpRequest } from './FXMLHttpRequest.js';
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('delete-family-btn').addEventListener('click', deleteaccount);
+    // document.getElementById('backTologin-button').addEventListener('click', backToLogin);
+});
+
+// const params = new URLSearchParams(window.location.search);
+// const familyData = params.get('family');
+// const family = JSON.parse(decodeURIComponent(familyData));
+const family =  {
+    family_id: 1,
+    familyName: "קהלני",
+    password: "123456",
+    familyChildren: ["שי", "רון", "רות", "דניאל", "רועי", "שירה", "אופיר"],
+    startTime: null
+}
+// const family = window.famliy;
+
+// console.log(family);
+function deleteaccount() {
+    if (family) {
+        var request = new FXMLHttpRequest();
+
+        request.open('DELETE', 'families', true);
+
+        const fxml = request.send(JSON.stringify(family));
+        // const storedFamilies = getAllFamilies();
+        // console.log(storedFamilies);
+        if  (fxml.status  == 200){
+            alert("נימחקת בהצלחה ");
+        };
+    }
+    window.location.href = "../html/login.html";
+}
+
+const childrenList = document.getElementById('children-list'); //put the children in a list
+
+// Function to render children names
+function renderChildren() {
+    childrenList.innerHTML = '';
+    family.familyChildren.forEach(child => {
+        const childLabel = document.createElement('label');
+        childLabel.textContent = child;
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'X';
+        removeButton.addEventListener('click', () => removeChild(child));
+        childLabel.appendChild(removeButton);
+        childrenList.appendChild(childLabel);
+    });
+}
+
+// Function to remove a child
+function removeChild(childName) {
+    const index = family.familyChildren.indexOf(childName);
+    if (index !== -1) {
+        family.familyChildren.splice(index, 1);
+        renderChildren();
+        // Send updated family data to the server
+
+        var request = new FXMLHttpRequest();
+
+        request.open('PUT', 'families', true);
+
+        const fxml = request.send(JSON.stringify(family));
+        if (fxml.status  == 200){
+            alert("עודכן בהצלחה ");
+        }
+    }
+}
+
+// Function to add a new child
+document.getElementById('add-child-btn').addEventListener('click', () => {
+    const newChildName = prompt('Please enter the name of the new child:');
+    if (newChildName) {
+        family.familyChildren.push(newChildName);
+        renderChildren();
+        // Send updated family data to the server
+        var request = new FXMLHttpRequest();
+
+        request.open('PUT', 'families', true);
+
+        const fxml = request.send(JSON.stringify(family));
+        if (fxml.status  == 200){
+            alert("עודכן בהצלחה ");
+        }
+    }
+    }
+);
+
+document.addEventListener("DOMContentLoaded", function() {renderChildren(); });
+
+
+// send the updated family
+function updateFamilyData(children_list) {
+   family.familyChildren =children_list;
+   updateFamily(family);
+}
+
+
+
+
 
 // // Retrieving the familyobj object from localStorage
 // const familyObj = JSON.parse(localStorage.getItem('familyObj'));

@@ -19,7 +19,11 @@ export function getAllFamilies() {
     return JSON.parse(localStorage.getItem('families')) || [];
 }
 
-export function updateFamily(updatedFamily) {
+export function updateFamily(family) {
+    if (typeof family === 'string') {
+        family = JSON.parse(family);
+    }
+    var updatedFamily = family.familyChildren;
     const storedFamilies = JSON.parse(localStorage.getItem('families')) || [];
     const updatedFamilies = storedFamilies.map(family => {
         if (family.familyName === updatedFamily.familyName) {
@@ -31,7 +35,12 @@ export function updateFamily(updatedFamily) {
     localStorage.setItem('families', JSON.stringify(updatedFamilies));
 }
 
-export function deleteFamily(familyName) {
+export function deleteFamily(family) {
+
+    if (typeof family === 'string') {
+        family = JSON.parse(family);
+    }
+    const familyName = family.familyName;
     const storedFamilies = JSON.parse(localStorage.getItem('families')) || [];
     // console.log("Before deletion:", storedFamilies);
     const updatedFamilies = storedFamilies.filter(family => family.familyName !== familyName);
