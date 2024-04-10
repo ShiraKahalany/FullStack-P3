@@ -126,18 +126,19 @@ window.addEventListener('message', function (event) {
     var fxml = new FXMLHttpRequest();
     fxml.addEventListener('readystatechange', () => {
       if (fxml.readyState == 4 && fxml.status == 200) {
-        //const ItemsforServer = JSON.parse(fxml.response);
 
-        const ItemsforServer = [{ family_id: 1, itemName: "קומקום", image: "../client/img/נקה ביתך לפסח (5).png", responsible: "שי", finishTime: null },
-        { family_id: 1, itemName: "מיקרוגל", image: "../client/img/נקה ביתך לפסח (6).png", responsible: "רון", finishTime: null },
-        { family_id: 1, itemName: "תנור", image: "../client/img/נקה ביתך לפסח (7).png", responsible: "רות", finishTime: null },
-        { family_id: 2, itemName: "קומקום", image: "../client/img/נקה ביתך לפסח (5).png", responsible: "מוריה", finishTime: null },
-        { family_id: 2, itemName: "ספה", image: "../client/img/נקה ביתך לפסח (3).png", responsible: "בן", finishTime: null },
-        { family_id: 3, itemName: "קומקום", image: "../client/img/נקה ביתך לפסח (5).png", responsible: "אמה", finishTime: null },
-        { family_id: 3, itemName: "מיקרוגל", image: "../client/img/נקה ביתך לפסח (6).png", responsible: "סופיה", finishTime: null },
-        { family_id: 4, itemName: "קומקום", image: "../client/img/נקה ביתך לפסח (5).png", responsible: "יעקב", finishTime: null },
-        { family_id: 4, itemName: "כיור", image: "../client/img/נקה ביתך לפסח (8).png", responsible: "אמילי", finishTime: null }
-        ];
+        const ItemsforServer = JSON.parse(fxml.response);
+
+        // //const ItemsforServer = [{ family_id: 1, itemName: "קומקום", image: "../client/img/נקה ביתך לפסח (5).png", responsible: "שי", finishTime: null },
+        // { family_id: 1, itemName: "מיקרוגל", image: "../client/img/נקה ביתך לפסח (6).png", responsible: "רון", finishTime: null },
+        // { family_id: 1, itemName: "תנור", image: "../client/img/נקה ביתך לפסח (7).png", responsible: "רות", finishTime: null },
+        // { family_id: 2, itemName: "קומקום", image: "../client/img/נקה ביתך לפסח (5).png", responsible: "מוריה", finishTime: null },
+        // { family_id: 2, itemName: "ספה", image: "../client/img/נקה ביתך לפסח (3).png", responsible: "בן", finishTime: null },
+        // { family_id: 3, itemName: "קומקום", image: "../client/img/נקה ביתך לפסח (5).png", responsible: "אמה", finishTime: null },
+        // { family_id: 3, itemName: "מיקרוגל", image: "../client/img/נקה ביתך לפסח (6).png", responsible: "סופיה", finishTime: null },
+        // { family_id: 4, itemName: "קומקום", image: "../client/img/נקה ביתך לפסח (5).png", responsible: "יעקב", finishTime: null },
+        // { family_id: 4, itemName: "כיור", image: "../client/img/נקה ביתך לפסח (8).png", responsible: "אמילי", finishTime: null }
+        // ];
 
         renderItems(ItemsforServer, parent.family.familyChildren);
         console.log(ItemsforServer);
