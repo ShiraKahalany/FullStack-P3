@@ -7,8 +7,12 @@ export const Server = {
       // console.log('GET families called', families);
       fxml.response = families;
       if(fxml.response){
-        fxml.readyState = 4;
+        console.log('Im here');
         fxml.status = 200;
+
+        fxml.readyState = 4;
+        fxml.dispatchEvent('readystatechange');
+
       }
       console.log('fxml.response :',fxml.response);
       

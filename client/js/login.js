@@ -20,43 +20,39 @@ function login() {
     }
 
     var request = new FXMLHttpRequest();
-    // request.onreadystatechange = function () {
-    //     if (request.readyState == 4 && request.status == 200) {
-    //         console.log("yesssssss");
-    //         const families = JSON.parse(request.response);
-    //         console.log(families);
-    //         // Do something with the received data here
-    //     }
-    // };
+    request.addEventListener('readystatechange', () => {
+        if (request.readyState == 4 && request.status == 200) {
+            console.log("from login:",request.response);
+            // console.log("yes",modifiedRequest.response);
+            const storedFamilies = request.response;
+            const family = storedFamilies.find(family => family.familyName === familyName) || null;
+            // window.family__id = family.family_id;
+            if(family==null){
+                alert("שם המשפחה אינו קיים");
+                return;
+            }
+            if (family && family.password === password) {
+                
+                parent.user_login =true;
+                parent.family = family;
+                //user_family_id = parent.family.family_id;
+                console.log("user_login:",parent.user_login,"user_family_id:",parent.family);
+                //window.location.href = "../html/list.html?family=" + encodeURIComponent(JSON.stringify(family));
+                window.parent.postMessage('login-successful', '*');
+                //console.log('login successful');
+            } else {
+                alert("הסיסמא שגויה או שם המשפחה אינו קיים");
+            }
+        }
+        else if (request.status===4 && request.status != 200) {
+            alert("שגיאה בהתחברות");
+        }
+    });
+
 
     request.open('GET', 'families', true);
-    const fxml = request.send();
-    console.log("from login:",fxml);
-    // console.log("yes",modifiedRequest.response);
-    const storedFamilies = fxml.response;
-    const family = storedFamilies.find(family => family.familyName === familyName) || null;
-    // window.family__id = family.family_id;
-    if(family==null){
-        alert("שם המשפחה אינו קיים");
-        return;
-    }
-    if (family && family.password === password) {
-        // Dispatch a custom event indicating successful login
-        // const loginEvent = new CustomEvent('userLoggedIn');
-        // console.log("here in dispatchEvent");
-        // window.dispatchEvent(loginEvent);
-        // Redirect or perform actions after successful login
-        
-        parent.user_login =true;
-        parent.family = family;
-        //user_family_id = parent.family.family_id;
-        console.log("user_login:",parent.user_login,"user_family_id:",parent.family);
-        //window.location.href = "../html/list.html?family=" + encodeURIComponent(JSON.stringify(family));
-        window.parent.postMessage('login-successful', '*');
-        //console.log('login successful');
-    } else {
-        alert("הסיסמא שגויה או שם המשפחה אינו קיים");
-    }
+    request.send();
+
             
 }
 
