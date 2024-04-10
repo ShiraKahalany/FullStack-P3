@@ -2,7 +2,7 @@ import * as familyCrud from './DB/familyCrud.js';
 import * as itemCrud from './DB/itemToCleanCrud.js';
 
 export const Server = {
-  GET: (fxml, data) => {
+  GET: (fxml) => {
     if (fxml.url === 'families') { // Check if the URL is for retrieving families
       const families = familyCrud.getAllFamilies(); //families is json object
       // console.log('GET families called', families);
@@ -19,9 +19,10 @@ export const Server = {
     fxml.response = itemCrud.getAllItemsToClean(); //data is json object
     if(fxml.response){
       fxml.status = 200;
+      
+    }
       fxml.readyState = 4;
       fxml.dispatchEvent('readystatechange');
-    }
   }   
 },
 

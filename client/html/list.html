@@ -11,14 +11,19 @@
 </head>
 
 <body>
-  <div class="grid">
+
+  <div class="search-header-section">
+    <input type="text" class="search-box glowing-border" id="searchInput" placeholder="חיפוש...">
+
+</div>
+  <div class="grid" id="itemsGrid">
     <div class="item">
       <img src="/client/img/item4.png" alt="מקרר">
       <span>מקרר</span>
       <div class="overlay">
         <div class="content">
             <h4>אחראי:</h4>
-          <select>
+          <select  class="glowing-border">
             <option value="1">אורי</option>
             <option value="2">דני</option>
             <option value="3">מוישי</option>
@@ -36,7 +41,7 @@
         <div class="overlay">
           <div class="content">
               <h4>אחראי:</h4>
-            <select>
+            <select  class="glowing-border">
               <option value="1">אורי</option>
               <option value="2">דני</option>
               <option value="3">מוישי</option>
@@ -58,7 +63,7 @@
               <option value="1">אורי</option>
               <option value="2">דני</option>
               <option value="3">מוישי</option>
-            </select>
+            </select  class="glowing-border">
             <div class="horizonal-container cancel-confirm-div">
             <img src="/client/img/confirm-icon.png" alt="השלם משימה" id="cancel-btn"></img>
             <img src="/client/img/cancel-icon.png" alt="ביטול" id="cancel-btn"></img>
@@ -72,7 +77,7 @@
         <div class="overlay">
           <div class="content">
               <h4>אחראי:</h4>
-            <select>
+            <select class="glowing-border">
               <option value="1">אורי</option>
               <option value="2">דני</option>
               <option value="3">מוישי</option>
@@ -88,7 +93,7 @@
     <!-- Add more items as needed -->
   </div>
 
-  <script src="../js/list.js"></script>
+  <script type="module" src="../js/list.js"></script>
 
 </body>
 

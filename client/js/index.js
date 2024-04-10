@@ -29,6 +29,8 @@ const app = {
         {
             document.querySelector('.active').classList.remove('active');
             document.getElementById('home').classList.add('active');
+            const iframe1 = document.getElementById('home').querySelector("iframe");
+            iframe1.contentWindow.postMessage("render-yourself", "*");
             document.getElementById('side-overlay').style.display = 'none';
         }
         else

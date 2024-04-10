@@ -25,6 +25,32 @@ body {
     background-color: var(--background-color);
 }
 
+.search-header-section
+{
+  width: 100%;
+  padding: 20px;
+    font-size: 100%;
+    color: var(--text-gray-color);
+    text-align: center;
+}
+.search-box {
+    height: 40px;
+    width: 35%;
+    padding-right: 20px;
+    font-family: var(--body-font);
+    font-size: 125%;
+}
+
+.glowing-border {
+    border: 2px solid #dadada;
+    border-radius: 25px;
+}
+
+.glowing-border:focus { 
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -93,7 +119,7 @@ body {
     text-align: center;
   }
 
-  #cancel-btn {
+  #cancel-btn, #confirm-btn {
     cursor: pointer;
     height: 50px;
   }

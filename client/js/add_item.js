@@ -116,7 +116,6 @@ window.addEventListener('message', function(event) {
         request.addEventListener('readystatechange', () => {
             if (request.readyState == 4 && request.status == 200) {
                 alert("הפריט הוסף בהצלחה ");
-                window.location.href = "../html/login.html";
             }
             else if (request.status===4 && request.status != 200) {
                 alert("שגיאה בהתחברות");
