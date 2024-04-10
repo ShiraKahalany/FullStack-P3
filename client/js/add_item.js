@@ -73,13 +73,7 @@ window.addEventListener('message', function(event) {
     // const familyData = params.get('family');
     // const family = JSON.parse(decodeURIComponent(familyData));
 
-    // const family =  {
-    //     family_id: 1,
-    //     familyName: "קהלני",
-    //     password: "123456",
-    //     familyChildren: ["שי", "רון", "רות", "דניאל", "רועי", "שירה", "אופיר"],
-    //     startTime: null
-    // }
+  
 
     function populateResponsibleOptions() {
     const itemResponsibleSelect = document.getElementById('item-responsible');
@@ -98,7 +92,7 @@ window.addEventListener('message', function(event) {
 
     function buildItemObject() {
       const itemName = document.getElementById('itemName').value;
-      const selectedImageSrc = selectedImage ? selectedImage.src : "../img/default-item-image.png";
+      const selectedImageSrc = selectedImage !== undefined ? images[selectedImage] : "../img/default-item-image.png";
       const responsibleIndex = document.getElementById('item-responsible').selectedIndex;
       const responsible = family.familyChildren[responsibleIndex];
       const finishTime = null;
