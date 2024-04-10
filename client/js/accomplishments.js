@@ -36,7 +36,16 @@ fourboyRequest.onreadystatechange = function () {
     }
 
 }
-document.addEventListener('show', ()=>{my_family=parent.family; console.log("hi shira ");});
 
 
+
+window.addEventListener('message', function(event) {
+    if (event.data === 'render-yourself')
+    {
+        my_family = parent.family;
+        console.log("from accom: ",my_family);
+        console.log("Message received from the parent: " + event.data); // Message received from parent
+
+    }
+  });
 
