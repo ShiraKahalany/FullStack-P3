@@ -49,10 +49,12 @@ export const Server = {
   },
   
   DELETE: (fxml, data) => {
+    if(fxml.url === 'families'){
     familyCrud.deleteFamily(data);
     fxml.status  = 200;
     fxml.readyState = 4;
     fxml.dispatchEvent('readystatechange');
+    }
   }
 };
 
