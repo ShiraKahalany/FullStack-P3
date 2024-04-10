@@ -61,3 +61,55 @@ function goGalleryItems() {
 goGalleryItems();
 
 
+// const params = new URLSearchParams(window.location.search);
+// const familyData = params.get('family');
+// const family = JSON.parse(decodeURIComponent(familyData));
+
+const family =  {
+    family_id: 1,
+    familyName: "קהלני",
+    password: "123456",
+    familyChildren: ["שי", "רון", "רות", "דניאל", "רועי", "שירה", "אופיר"],
+    startTime: null
+}
+
+function populateResponsibleOptions() {
+const itemResponsibleSelect = document.getElementById('item-responsible');
+
+// Clear existing options
+itemResponsibleSelect.innerHTML = '';
+
+// Create and append options for each child
+family.familyChildren.forEach(child => {
+    const option = document.createElement('option');
+    option.text = child;
+    itemResponsibleSelect.add(option);
+});
+}
+populateResponsibleOptions();
+
+function buildItemObject() {
+  const itemName = document.getElementById('item-name').value;
+  const selectedImage = document.querySelector('.gallery-image.selected');
+  const image = selectedImage ? selectedImage.src : "../../client/img/default-item-image.png";
+  const responsibleIndex = document.getElementById('item-responsible').selectedIndex;
+  const responsible = family.familyChildren[responsibleIndex];
+  const finishTime = null;
+
+  const newItem = {
+      family_id: family.family_id,
+      itemName: itemName,
+      image: image,
+      responsible: responsible,
+      finishTime: finishTime
+  };
+
+  return newItem;
+}
+
+document.getElementById('add-item-btn').addEventListener('click', function() {
+  const newItem = buildItemObject();
+  console.log(newItem);
+  addItemToClean(newItem);
+  window.location.href = "./DBud.html?family=" + encodeURIComponent(JSON.stringify(family));
+});
