@@ -27,6 +27,7 @@ export const Server = {
 },
 
   POST: (fxml, data) => {
+    console.log("fxmlinpost:",fxml)
     if (fxml.url === 'families') { // Check if the URL is for retrieving families
       familyCrud.addFamily(data); //data is json object
       fxml.status  = 200;

@@ -8,7 +8,7 @@ export function getAllItemsToClean() {
 
 export function addItemToClean(item) {
     if (typeof item === 'string') {
-        family = JSON.parse(family);
+        item = JSON.parse(item);
     }
     const storedItemsToClean = JSON.parse(localStorage.getItem('itemsToClean')) || [];
     storedItemsToClean.push(item);
