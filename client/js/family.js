@@ -5,20 +5,27 @@ document.addEventListener('DOMContentLoaded', function () {
     // document.getElementById('backTologin-button').addEventListener('click', backToLogin);
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("parent.family",parent.family); // Log the parent.family object when the DOM is fully loaded
+    // Add other initialization code here
+});
+
 // const params = new URLSearchParams(window.location.search);
 // const familyData = params.get('family');
 // const family = JSON.parse(decodeURIComponent(familyData));
-const family =  {
-    family_id: 1,
-    familyName: "קהלני",
-    password: "123456",
-    familyChildren: ["שי", "רון", "רות", "דניאל", "רועי", "שירה", "אופיר"],
-    startTime: null
-}
-// const family = window.famliy;
+// const family =  {
+//     family_id: 1,
+//     familyName: "קהלני",
+//     password: "123456",
+//     familyChildren: ["שי", "רון", "רות", "דניאל", "רועי", "שירה", "אופיר"],
+//     startTime: null
+// }
+ var family = parent.family;
+ console.log(parent.family);
 
 // console.log(family);
 function deleteaccount() {
+    console.log("here in delete-account");
     if (family) {
         var request = new FXMLHttpRequest();
 
@@ -31,7 +38,7 @@ function deleteaccount() {
             alert("נימחקת בהצלחה ");
         };
     }
-    window.location.href = "../html/login.html";
+    // window.location.href = "../html/login.html";
 }
 
 const childrenList = document.getElementById('children-list'); //put the children in a list
@@ -39,16 +46,19 @@ const childrenList = document.getElementById('children-list'); //put the childre
 // Function to render children names
 function renderChildren() {
     childrenList.innerHTML = '';
-    family.familyChildren.forEach(child => {
-        const childLabel = document.createElement('label');
-        childLabel.textContent = child;
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'X';
-        removeButton.addEventListener('click', () => removeChild(child));
-        childLabel.appendChild(removeButton);
-        childrenList.appendChild(childLabel);
-    });
+    if (family && family.familyChildren) {
+        family.familyChildren.forEach(child => {
+            const childLabel = document.createElement('label');
+            childLabel.textContent = child;
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'X';
+            removeButton.addEventListener('click', () => removeChild(child));
+            childLabel.appendChild(removeButton);
+            childrenList.appendChild(childLabel);
+        });
+    }
 }
+
 
 // Function to remove a child
 function removeChild(childName) {
