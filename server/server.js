@@ -1,4 +1,5 @@
 import * as familyCrud from './DB/familyCrud.js';
+import * as itemCrud from './DB/itemToCleanCrud.js';
 
 export const Server = {
   GET: (fxml, data) => {
@@ -6,34 +7,51 @@ export const Server = {
       const families = familyCrud.getAllFamilies(); //families is json object
       // console.log('GET families called', families);
       fxml.response = families;
-      if(fxml.response){
-        console.log('Im here');
-        fxml.status = 200;
 
+      if(fxml.response){
+        fxml.status = 200;
         fxml.readyState = 4;
         fxml.dispatchEvent('readystatechange');
-
       }
       console.log('fxml.response :',fxml.response);
-      
-      // Send the retrieved families back to the client
-      // Assuming here that you're using Express.js, you can send the families as JSON
-      // res.json(families); // Uncomment this line if you're using Express.js
-  }  
+  }
+  else if (fxml.url === 'itemsToClean') { // Check if the URL is for retrieving families
+    fxml.response = itemCrud.getAllItemsToClean(); //data is json object
+    if(fxml.response){
+      fxml.status = 200;
+      fxml.readyState = 4;
+      fxml.dispatchEvent('readystatechange');
+    }
+  }   
 },
+
   POST: (fxml, data) => {
     if (fxml.url === 'families') { // Check if the URL is for retrieving families
       familyCrud.addFamily(data); //data is json object
       fxml.status  = 200;
-  } 
+      fxml.readyState = 4;
+      fxml.dispatchEvent('readystatechange');
+    } 
+    else if (fxml.url === 'itemsToClean') { // Check if the URL is for retrieving families
+      itemCrud.addItemToClean(data); //data is json object
+      fxml.status  = 200;
+      fxml.readyState = 4;
+      fxml.dispatchEvent('readystatechange');
+    } 
   },
+
   PUT: (fxml, data) => { 
     familyCrud.updateFamily(data);
     fxml.status  = 200;
+    fxml.readyState = 4;
+    fxml.dispatchEvent('readystatechange');
   },
+  
   DELETE: (fxml, data) => {
     familyCrud.deleteFamily(data);
     fxml.status  = 200;
+    fxml.readyState = 4;
+    fxml.dispatchEvent('readystatechange');
   }
 };
 

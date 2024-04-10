@@ -1,3 +1,4 @@
+import { FXMLHttpRequest } from './FXMLHttpRequest.js';
 
 const images = [
   '../img/item1.png',
@@ -89,9 +90,8 @@ family.familyChildren.forEach(child => {
 populateResponsibleOptions();
 
 function buildItemObject() {
-  const itemName = document.getElementById('item-name').value;
-  const selectedImage = document.querySelector('.gallery-image.selected');
-  const image = selectedImage ? selectedImage.src : "../../client/img/default-item-image.png";
+  const itemName = document.getElementById('itemName').value;
+  const selectedImageSrc = selectedImage ? selectedImage.src : "../img/default-item-image.png";
   const responsibleIndex = document.getElementById('item-responsible').selectedIndex;
   const responsible = family.familyChildren[responsibleIndex];
   const finishTime = null;
@@ -99,17 +99,31 @@ function buildItemObject() {
   const newItem = {
       family_id: family.family_id,
       itemName: itemName,
-      image: image,
+      image: selectedImageSrc,
       responsible: responsible,
       finishTime: finishTime
   };
 
+  console.log("new item:", newItem);
   return newItem;
 }
 
 document.getElementById('add-item-btn').addEventListener('click', function() {
   const newItem = buildItemObject();
   console.log(newItem);
-  addItemToClean(newItem);
-  window.location.href = "./DBud.html?family=" + encodeURIComponent(JSON.stringify(family));
+
+  var request = new FXMLHttpRequest();
+    request.addEventListener('readystatechange', () => {
+        if (request.readyState == 4 && request.status == 200) {
+            alert("נימחקת בהצלחה");
+            window.location.href = "../html/login.html";
+        }
+        else if (request.status===4 && request.status != 200) {
+            alert("שגיאה בהתחברות");
+        }
+    });
+    request.open('POST', 'families', true);
+    request.send(JSON.stringify(newItem));
+  // addItemToClean(newItem);
+  // window.location.href = "./DBud.html?family=" + encodeURIComponent(JSON.stringify(family));
 });

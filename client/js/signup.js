@@ -34,16 +34,22 @@ function keep(){
         startTime: new Date() //this day
     }
     console.log(newFamily);
+
     var request = new FXMLHttpRequest();
+    request.addEventListener('readystatechange', () => {
+        if (request.readyState == 4 && request.status == 200) {
+            alert("נירשמת בהצלחה - נקיון נעים");
+            window.location.href = "../html/login.html";
+        }
+        else if (request.status===4 && request.status != 200) {
+            alert("שגיאה בהתחברות");
+        }
+    });
+
 
     request.open('POST', 'families', true);
-
-    const fxml = request.send(JSON.stringify(newFamily));
-
-    if(fxml.status  == 200){
-        alert("נירשמת בהצלחה - נקיון נעים");
-    }
-    window.location.href = "../html/login.html";
+    request.send(JSON.stringify(newFamily));
+   
 }
 
 

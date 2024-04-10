@@ -2,7 +2,14 @@ function getAllItemsToClean() {
     return JSON.parse(localStorage.getItem('itemsToClean')) || [];
 }
 
+// function getItemsToCleanByID(family_id){
+//     return JSON.parse(localStorage.getItem('itemsToClean')) || [];
+// }
+
 function addItemToClean(item) {
+    if (typeof item === 'string') {
+        family = JSON.parse(family);
+    }
     const storedItemsToClean = JSON.parse(localStorage.getItem('itemsToClean')) || [];
     storedItemsToClean.push(item);
     localStorage.setItem('itemsToClean', JSON.stringify(storedItemsToClean));

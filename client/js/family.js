@@ -27,16 +27,30 @@ document.addEventListener('DOMContentLoaded', function () {
 function deleteaccount() {
     console.log("here in delete-account");
     if (family) {
-        var request = new FXMLHttpRequest();
-
-        request.open('DELETE', 'families', true);
-
-        const fxml = request.send(JSON.stringify(family));
-        // const storedFamilies = getAllFamilies();
-        // console.log(storedFamilies);
-        if  (fxml.status  == 200){
+    var request = new FXMLHttpRequest();
+    request.addEventListener('readystatechange', () => {
+        if (request.readyState == 4 && request.status == 200) {
             alert("נימחקת בהצלחה ");
-        };
+            window.location.href = "../html/login.html";
+        }
+        else if (request.status===4 && request.status != 200) {
+            alert("שגיאה בהתחברות");
+        }
+    });
+
+
+    request.open('DELETE', 'families', true);
+    request.send(JSON.stringify(family));
+        // // var request = new FXMLHttpRequest();
+
+        // // request.open('DELETE', 'families', true);
+
+        // // const fxml = request.send(JSON.stringify(family));
+        // // const storedFamilies = getAllFamilies();
+        // // console.log(storedFamilies);
+        // if  (fxml.status  == 200){
+        //     alert("נימחקת בהצלחה ");
+        // };
     }
     // window.location.href = "../html/login.html";
 }
@@ -66,16 +80,7 @@ function removeChild(childName) {
     if (index !== -1) {
         family.familyChildren.splice(index, 1);
         renderChildren();
-        // Send updated family data to the server
-
-        var request = new FXMLHttpRequest();
-
-        request.open('PUT', 'families', true);
-
-        const fxml = request.send(JSON.stringify(family));
-        if (fxml.status  == 200){
-            alert("עודכן בהצלחה ");
-        }
+        updateFamilyData(family.familyChildren);
     }
 }
 
@@ -85,15 +90,7 @@ document.getElementById('add-child-btn').addEventListener('click', () => {
     if (newChildName) {
         family.familyChildren.push(newChildName);
         renderChildren();
-        // Send updated family data to the server
-        var request = new FXMLHttpRequest();
-
-        request.open('PUT', 'families', true);
-
-        const fxml = request.send(JSON.stringify(family));
-        if (fxml.status  == 200){
-            alert("עודכן בהצלחה ");
-        }
+        updateFamilyData(family.familyChildren);
     }
     }
 );
@@ -103,8 +100,28 @@ document.addEventListener("DOMContentLoaded", function() {renderChildren(); });
 
 // send the updated family
 function updateFamilyData(children_list) {
-   family.familyChildren =children_list;
-   updateFamily(family);
+    family.familyChildren =children_list;
+    //    updateFamily(family);
+    var request = new FXMLHttpRequest();
+    request.addEventListener('readystatechange', () => {
+    if (request.readyState == 4 && request.status == 200) {
+        alert("עודכן בהצלחה");
+    }
+    else if (request.status===4 && request.status != 200) {
+        alert("שגיאה בהתחברות");
+    }
+    });
+    request.open('PUT', 'families', true);
+    request.send(JSON.stringify(family));
+
+    // var request = new FXMLHttpRequest();
+
+        // request.open('PUT', 'families', true);
+
+        // const fxml = request.send(JSON.stringify(family));
+        // if (fxml.status  == 200){
+        //     alert("עודכן בהצלחה ");
+        // }
 }
 
 
