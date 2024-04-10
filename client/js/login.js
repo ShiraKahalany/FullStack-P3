@@ -1,53 +1,53 @@
 import { FXMLHttpRequest } from './FXMLHttpRequest.js';
 
-document.getElementById('login-button').addEventListener('click', login);
+// document.getElementById('login-button').addEventListener('click', login());
+// document.getElementById('signup-button').addEventListener('click', showSignup());
+
+// Attach event listeners after the DOM has loaded
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('login-button').addEventListener('click', login);
+    document.getElementById('signup-button').addEventListener('click', showSignup);
+});
 
 function login() {
-    var familyName = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    const familyName = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-    var request = new FXMLHttpRequest();
-    request.readystatechange = function() {
-        if (request.readyState === 4) {
-            if (request.status === 200) {
-                // Handle successful response
-                var response = JSON.parse(request.responseText);
-                // Check if the response indicates successful login
-                if (response.success) {
-                    // Redirect to family.html or perform any other action
-                    console.log("sucess");
-                } else {
-                    // Display error message to the user
-                    alert("שם המשתמש או הסיסמא שגויים או שיש בעיה בשרת :(");
-                }
-            } else {
-                // Handle request error
-                console.error("Error: " + request.status);
-            }
-        }
-    };
-    // Open connection
-    request.open('GET', families, true);
-    // request.setRequestHeader('Content-Type', 'application/json');
-    // Send request with family name and password
-    request.send();
-
-
-    var familyobj = JSON.parse(request.responseText);
-   
-    //const familyName = familyobj.familyName;
-
-    if (familyobj.password === password) {
-        // window.location.href = "../html/family.html";
-        window.parent.postMessage('login-successful ${x}', '*');
-        console.log('login successful');
-    } else {
-        alert("Invalid family name or password!");
+    // Check if the inputs are not empty
+    if (familyName.trim() === '' || password.trim() === '') {
+        alert("אנא מלאו את כל השדות"); // Display an alert if any input is empty
+        return;
     }
 
+    var request = new FXMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            const families = JSON.parse(request.responseText);
+            console.log(families);
+            // Do something with the received data here
+        }
+    };
 
-    // Storing the familyobj object in localStorage
-    // localStorage.setItem('familyObj', JSON.stringify(familyobj));
+    // Open connection
+    request.open('GET', 'families', true);
+    request.send();
 
     
+    // var params = "id=1&name=John"; // Parameters to be sent in the request body
+
+    // xhr.open("PUT", url, true);
+    // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//זה בעצם אומר לשרת איזה סוג נתונים הועבר. הפרמטר השני שאת רואה מסמל את הסוג"id=1&name=John" של הנתון הזה 
+
+    // xhr.onreadystatechange = function () {
+    // if (xhr.readyState == 4 && xhr.status == 200) {
+    //     console.log(xhr.responseText);
+    // }
+    // };
+
+    // xhr.send(params);
+}
+
+function showSignup() {
+    var iframe = parent.document.getElementById("login-frame");
+    iframe.src = "html/signup.html";
 }

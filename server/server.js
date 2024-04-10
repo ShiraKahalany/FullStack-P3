@@ -1,9 +1,15 @@
+import { getAllFamilies } from './DB/familyCrud';
+
 export const Server = {
   GET: (url, data) => {
-    //url=family/itemToClean/Error
-    //data=if you want specific data
-    console.log('GET called');
-  },
+    if (url === 'families') { // Check if the URL is for retrieving families
+        const families = getAllFamilies();
+        console.log('GET families called', families);
+        // Send the retrieved families back to the client
+        // Assuming here that you're using Express.js, you can send the families as JSON
+        res.json(families);
+    }
+},
   POST: (url, data) => {
     console.log('POST called');
   },

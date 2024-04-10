@@ -1,4 +1,4 @@
-function addFamily(family) {
+export function addFamily(family) {
     let storedFamilies = JSON.parse(localStorage.getItem('families')) || [];
     let running_id = parseInt(localStorage.getItem('running_id')) || 0;
     ++running_id; // Increase the running number by 1
@@ -9,11 +9,11 @@ function addFamily(family) {
 }
 
 
-function getAllFamilies() {
+export function getAllFamilies() {
     return JSON.parse(localStorage.getItem('families')) || [];
 }
 
-function updateFamily(updatedFamily) {
+export function updateFamily(updatedFamily) {
     const storedFamilies = JSON.parse(localStorage.getItem('families')) || [];
     const updatedFamilies = storedFamilies.map(family => {
         if (family.familyName === updatedFamily.familyName) {
@@ -25,7 +25,7 @@ function updateFamily(updatedFamily) {
     localStorage.setItem('families', JSON.stringify(updatedFamilies));
 }
 
-function deleteFamily(familyName) {
+export function deleteFamily(familyName) {
     const storedFamilies = JSON.parse(localStorage.getItem('families')) || [];
     // console.log("Before deletion:", storedFamilies);
     const updatedFamilies = storedFamilies.filter(family => family.familyName !== familyName);

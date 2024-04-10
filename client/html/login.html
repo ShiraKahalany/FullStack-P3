@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/login.js" type="module" defer></script>
+    <script src="../js/FXMLHttpRequest.js" type="module" defer></script>
 </head>
 
 <body>
@@ -17,19 +19,8 @@
         <input class="glowing-border" id="password" type="password" placeholder="סיסמא">
         <button id="login-button">מתחילים!</button>
         <p>עדיין לא רשומים אצלינו?</p>
-        <button onclick="showSignup()">הירשמו עכשיו</button>
-    </div>
-
+        <button id="signup-button">הירשמו עכשיו</button>
+    </div>    
 </body>
-<script>
-    function showSignup() {
-        var iframe = parent.document.getElementById("login-frame");
-        iframe.src = "html/signup.html";
-    }
-</script>
-<!-- <script  type="module" src="../js/FXMLHttpRequest.js"></script> -->
-<script type="module" src="../js/login.js"></script>
-
-
 
 </html>

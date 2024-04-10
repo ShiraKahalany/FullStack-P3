@@ -36,12 +36,12 @@ indicateToday();
 
 var start_date=null;
 
-if(family)
-    start_date=family.startTime;
-if(start_date)
-    addStartIndicateToDate(start_date);
-else
-    addStartIndicateToDate('2024-03-31');
+// if(family)
+//     start_date=family.startTime;
+// if(start_date)
+//     addStartIndicateToDate(start_date);
+// else
+//     addStartIndicateToDate('2024-03-31');
 
 
 //need to get itemToClean from server for this family
