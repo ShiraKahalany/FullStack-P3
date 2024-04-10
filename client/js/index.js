@@ -50,6 +50,8 @@ const app = {
     },
     pageShown: function(ev){
         console.log('Page', ev.target.id, 'just shown');
+        const iframe = document.getElementById(ev.target.id).querySelector("iframe");
+        iframe.contentWindow.postMessage("render-yourself", "*");
     },
     poppin: function(ev){
         console.log(location.hash, 'popstate event');
@@ -68,7 +70,9 @@ document.addEventListener('DOMContentLoaded', app.init);
 
 window.addEventListener('message', function(event) {
     if ('login-successful' === event.data) 
+    {
         app.login_nav();
+    }
 });
 
 // Add an event listener to listen for messages from the iframe
