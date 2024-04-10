@@ -46,10 +46,14 @@ function login() {
         // console.log("here in dispatchEvent");
         // window.dispatchEvent(loginEvent);
         // Redirect or perform actions after successful login
-        user_login =true;
-        user_family_id = family.family_id;
-        console.log("user_login:",user_login,"user_family_id:",user_family_id);
-        window.location.href = "../html/list.html?family=" + encodeURIComponent(JSON.stringify(family));
+        
+        parent.user_login =true;
+        parent.family = family;
+        //user_family_id = parent.family.family_id;
+        console.log("user_login:",parent.user_login,"user_family_id:",parent.family);
+        //window.location.href = "../html/list.html?family=" + encodeURIComponent(JSON.stringify(family));
+        window.parent.postMessage('login-successful', '*');
+        //console.log('login successful');
     } else {
         alert("הסיסמא שגויה או שם המשפחה אינו קיים");
     }
