@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', app.init);
 
 
 window.addEventListener('message', function(event) {
-    if ('login-successful'===event.data) 
+    if ('login-successful' === event.data) 
         app.login_nav();
 });
 
