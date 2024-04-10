@@ -75,6 +75,7 @@ window.addEventListener('message', function(event) {
         // send the updated family
         function updateFamilyData(children_list) {
             family.familyChildren =children_list;
+            console.log("updatefamily",family);
             //    updateFamily(family);
             var request = new FXMLHttpRequest();
             request.addEventListener('readystatechange', () => {

@@ -23,13 +23,12 @@ export function updateFamily(family) {
     if (typeof family === 'string') {
         family = JSON.parse(family);
     }
-    var updatedFamily = family.familyChildren;
     const storedFamilies = JSON.parse(localStorage.getItem('families')) || [];
-    const updatedFamilies = storedFamilies.map(family => {
-        if (family.familyName === updatedFamily.familyName) {
-            return updatedFamily;
-        } else {
+    const updatedFamilies = storedFamilies.map(my_family => {
+        if (my_family.familyName === family.familyName) {
             return family;
+        } else {
+            return my_family; // Return the original family if the names don't match
         }
     });
     localStorage.setItem('families', JSON.stringify(updatedFamilies));

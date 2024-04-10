@@ -43,18 +43,20 @@ export const Server = {
   },
 
   PUT: (fxml, data) => { 
-    familyCrud.updateFamily(data);
-    fxml.status  = 200;
-    fxml.readyState = 4;
-    fxml.dispatchEvent('readystatechange');
+    if(fxml.url === 'families'){
+      familyCrud.updateFamily(data);
+      fxml.status  = 200;
+      fxml.readyState = 4;
+      fxml.dispatchEvent('readystatechange');
+    }
   },
   
   DELETE: (fxml, data) => {
     if(fxml.url === 'families'){
-    familyCrud.deleteFamily(data);
-    fxml.status  = 200;
-    fxml.readyState = 4;
-    fxml.dispatchEvent('readystatechange');
+      familyCrud.deleteFamily(data);
+      fxml.status  = 200;
+      fxml.readyState = 4;
+      fxml.dispatchEvent('readystatechange');
     }
   }
 };
