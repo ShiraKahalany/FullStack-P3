@@ -56,27 +56,23 @@ export const Server = {
     } 
     else if (fxml.url === 'itemsToClean') { // Check if the URL is for retrieving families
       itemCrud.addItemToClean(data); //data is json object
-      fxml.status  = 200;
-      fxml.readyState = 4;
-      fxml.dispatchEvent('readystatechange');
+        SendForServerToNetwork(fxml,true);        
     } 
   },
 
   PUT: (fxml, data) => { 
     if(fxml.url === 'families'){
       familyCrud.updateFamily(data);
-      fxml.status  = 200;
-      fxml.readyState = 4;
-      fxml.dispatchEvent('readystatechange');
+      SendForServerToNetwork(fxml,true);        
+
     }
   },
   
   DELETE: (fxml, data) => {
     if(fxml.url === 'families'){
       familyCrud.deleteFamily(data);
-      fxml.status  = 200;
-      fxml.readyState = 4;
-      fxml.dispatchEvent('readystatechange');
+      SendForServerToNetwork(fxml,true);        
+
     }
   }
 };
