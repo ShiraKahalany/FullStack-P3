@@ -2,9 +2,18 @@ export function getAllItemsToClean() {
     return JSON.parse(localStorage.getItem('itemsToClean')) || [];
 }
 
-// function getItemsToCleanByID(family_id){
-//     return JSON.parse(localStorage.getItem('itemsToClean')) || [];
-// }
+export function getItemsToCleanByID(family_id){
+    const itemsToCleanData = JSON.parse(localStorage.getItem('itemsToClean'));
+    const parsedFamilyId = typeof family_id === 'string' ? JSON.parse(family_id) : family_id;
+
+    const filteredItems = itemsToCleanData.filter(item => {
+        return item.family_id === parsedFamilyId;
+    });
+
+    // Return filtered items as JSON
+    return JSON.stringify(filteredItems);
+}
+
 
 export function addItemToClean(item) {
     if (typeof item === 'string') {
