@@ -52,9 +52,9 @@ function login() {
                 //window.location.href = "../html/list.html?family=" + encodeURIComponent(JSON.stringify(family));
                 window.parent.postMessage('login-successful', '*');
                 //console.log('login successful');
-            } else {
-                alert("הסיסמא שגויה או שם המשפחה אינו קיים");
-            }
+                } else {
+                    alert("הסיסמא שגויה או שם המשפחה אינו קיים");
+                }
         }
         else if (request.status===4 && request.status != 200) {
             alert("שגיאה בהתחברות");

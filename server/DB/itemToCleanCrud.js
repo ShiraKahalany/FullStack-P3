@@ -33,16 +33,25 @@ export function deleteItemToClean(itemToDelete) {
 }
 
 
-// Function to update an item to clean in local storage
 export function updateItemToClean(updatedItem) {
-    const storedItemsToClean = JSON.parse(localStorage.getItem('itemsToClean')) || [];
-    const updatedItemsToClean = storedItemsToClean.map(item => {
-        if (item.itemName === updatedItem.itemName) {
-            return updatedItem;
+    var parseitemToClean = JSON.parse(updatedItem);
+    console.log("parseitemToClean",parseitemToClean);
+    // Get the family_id from updatedItem
+    const family_id = parseitemToClean.family_id;
+
+    // Retrieve items for the specific family
+    const itemsToCleanData = JSON.parse(getItemsToCleanByID(family_id));
+
+    // Update the item with the same itemName as the updatedItem
+    const updatedItemsToClean = itemsToCleanData.map(item => {
+        if (item.itemName === parseitemToClean.itemName) {
+            return parseitemToClean;
         } else {
             return item;
         }
     });
+
+    // Save the updated items back to local storage
     localStorage.setItem('itemsToClean', JSON.stringify(updatedItemsToClean));
 }
 

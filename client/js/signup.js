@@ -37,7 +37,11 @@ function keep(){
         return;
     }
 
-    const familyChildren = document.getElementById('childrenNames').value.split(",").map(name => name.trim());
+    // const familyChildren = document.getElementById('childrenNames').value.split(",").map(name => name.trim());
+    const inputNames = document.getElementById('childrenNames').value;
+    const extraChildren = ["אבא", "אמא"];
+    const familyChildren = [...extraChildren, ...inputNames.split(",").map(name => name.trim())];
+
     const newFamily = {
         family_id: 0, // Function to generate the next family_id
         familyName,
