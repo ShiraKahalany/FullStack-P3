@@ -25,12 +25,19 @@ export function addItemToClean(item) {
 }
 
 export function deleteItemToClean(itemToDelete) {
-    const storedItemsToClean = JSON.parse(localStorage.getItem('itemsToClean')) || [];
-    const updatedItemsToClean = storedItemsToClean.filter(item => {
-        return item.family_id !== itemToDelete.family_id || item.itemName !== itemToDelete.itemName;
-    });
+    // Parse the item to delete
+    const parsedItemToDelete = JSON.parse(itemToDelete);
+
+    // Retrieve items for the specific family
+    const itemsToCleanData = JSON.parse(getItemsToCleanByID(parsedItemToDelete.family_id));
+
+    // Filter out the item to delete
+    const updatedItemsToClean = itemsToCleanData.filter(item => item.itemName !== parsedItemToDelete.itemName);
+
+    // Save the updated items back to local storage
     localStorage.setItem('itemsToClean', JSON.stringify(updatedItemsToClean));
 }
+
 
 
 export function updateItemToClean(updatedItem) {
