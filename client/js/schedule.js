@@ -59,6 +59,7 @@ window.addEventListener('message', function (event) {
 
         var itemsRequest = new FXMLHttpRequest();
         itemsRequest.open('GET', 'itemsToClean', true);
+        itemsRequest.open('GET', 'itemsToClean', true);
         itemsRequest.addEventListener('readystatechange', () => {
             if (itemsRequest.readyState == 4 && itemsRequest.status == 200) {
                 console.log("from sche: ", itemsRequest.response);

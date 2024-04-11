@@ -1,5 +1,5 @@
 export function getAllItemsToClean() {
-    return JSON.parse(localStorage.getItem('itemsToClean')) || [];
+    return JSON.stringify(JSON.parse(localStorage.getItem('itemsToClean')) || []);
 }
 
 export function getItemsToCleanByID(family_id){

@@ -16,7 +16,18 @@ export function addFamily(family) {
 
 
 export function getAllFamilies() {
-    return JSON.parse(localStorage.getItem('families')) || [];
+    return JSON.stringify(JSON.parse(localStorage.getItem('families')) || []);
+}
+
+export function getFamilyByID(family_id){
+    const familiesData = JSON.parse(localStorage.getItem('families'));
+    const parsedFamilyId = typeof family_id === 'string' ? JSON.parse(family_id) : family_id;
+
+    const my_Family = familiesData.filter(item => {
+        return item.family_id === parsedFamilyId;
+    });
+
+    return JSON.stringify(my_Family);
 }
 
 export function updateFamily(family) {
