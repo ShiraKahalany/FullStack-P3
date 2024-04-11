@@ -163,7 +163,7 @@ window.addEventListener('message', function (event) {
       }
     });
     fxml.open('GET', 'itemsToClean', true);
-    fxml.send();
+    fxml.send(JSON.stringify(parent.family.family_id));
 
 
 

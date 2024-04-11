@@ -31,7 +31,7 @@ export const Server = {
     }
   }
   
-  else if (fxml.url === 'itemsToClean') { 
+  else if (fxml.url === 'itemsToClean' ) { 
     if(data === null){
       fxml.response = itemCrud.getAllItemsToClean(); //data is json object
       fxml.responseType = 'json';
