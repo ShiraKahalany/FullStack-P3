@@ -24,7 +24,7 @@ function login() {
         if (request.readyState == 4 && request.status == 200) {
             console.log("from login:",request.response);
             // console.log("yes",modifiedRequest.response);
-            const storedFamilies = request.response;
+            const storedFamilies = JSON.parse(request.response);
             const family = storedFamilies.find(family => family.familyName === familyName) || null;
             // window.family__id = family.family_id;
             if(family==null){

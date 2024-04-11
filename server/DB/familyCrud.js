@@ -16,7 +16,7 @@ export function addFamily(family) {
 
 
 export function getAllFamilies() {
-    return JSON.parse(localStorage.getItem('families')) || [];
+    return JSON.stringify(JSON.parse(localStorage.getItem('families')) || []);
 }
 
 export function updateFamily(family) {

@@ -6,6 +6,8 @@ window.addEventListener('message', function(event) {
     {
         family = parent.family;
         console.log("familyfromFamily",family);
+        const jsConfetti = new JSConfetti();
+        jsConfetti.addConfetti().then(() => jsConfetti.addConfetti());
         const childrenList = document.getElementById('children-list'); //put the children in a list
         renderChildren();
 
@@ -68,9 +70,6 @@ window.addEventListener('message', function(event) {
             }
             }
         );
-
-        // document.addEventListener("DOMContentLoaded", function() {renderChildren(); });
-
 
         // send the updated family
         function updateFamilyData(children_list) {
