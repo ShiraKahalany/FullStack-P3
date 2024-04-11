@@ -56,16 +56,15 @@ window.addEventListener('message', function (event) {
             addStartIndicateToDate('2024-03-31');
 
         var finish_dates_array = [];
-        var my_family_id = parent.family.family_id;
 
         var itemsRequest = new FXMLHttpRequest();
-        itemsRequest.open('GET', 'items', true);
+        itemsRequest.open('GET', 'itemsToClean', true);
         itemsRequest.addEventListener('readystatechange', () => {
             if (itemsRequest.readyState == 4 && itemsRequest.status == 200) {
                 console.log("from sche: ", itemsRequest.response);
-                var items = (itemsRequest.response);
+                var items = JSON.parse(itemsRequest.response);
                 items.forEach(item => {
-                    if (item.family_id === my_family_id && item.finishTime) {
+                    if (item.finishTime) {
                         finish_dates_array.push(item.finishTime);
                     }
                 });
@@ -75,8 +74,7 @@ window.addEventListener('message', function (event) {
                 alert("שגיאה בקבלת המידע מהשרת");
             }
         });
-        itemsRequest.send({id: my_family_id});
-    }
+        itemsRequest.send(JSON.stringify(parent.family.family_id));    }
 });
 
 

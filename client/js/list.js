@@ -142,7 +142,7 @@ window.addEventListener('message', function (event) {
     fxml.addEventListener('readystatechange', () => {
       if (fxml.readyState == 4 && fxml.status == 200) {
 
-        const ItemsforServer = fxml.response;
+        const ItemsforServer = JSON.parse(fxml.response);
 
         // //const ItemsforServer = [{ family_id: 1, itemName: "קומקום", image: "../client/img/נקה ביתך לפסח (5).png", responsible: "שי", finishTime: null },
         // { family_id: 1, itemName: "מיקרוגל", image: "../client/img/נקה ביתך לפסח (6).png", responsible: "רון", finishTime: null },
@@ -163,7 +163,7 @@ window.addEventListener('message', function (event) {
       }
     });
     fxml.open('GET', 'itemsToClean', true);
-    fxml.send();
+    fxml.send(JSON.stringify(parent.family.family_id));
 
 
 
