@@ -1,5 +1,6 @@
 import * as familyCrud from './DB/familyCrud.js';
 import * as itemCrud from './DB/itemToCleanCrud.js';
+import { SendForServerToNetwork } from '../network.js'
 
 export const Server = {
   GET: (fxml, data) => {
@@ -7,6 +8,8 @@ export const Server = {
       const families = familyCrud.getAllFamilies(); //families is json object
       // console.log('GET families called', families);
       fxml.response = families;
+      fxml.responseType = 'json';
+
 
       if(fxml.response){
         fxml.status = 200;
@@ -19,6 +22,7 @@ export const Server = {
   else if (fxml.url === 'itemsToClean') { 
     if(data === null){
       fxml.response = itemCrud.getAllItemsToClean(); //data is json object
+      fxml.responseType = 'json';
       if(fxml.response){
         fxml.status = 200;
         
@@ -27,6 +31,7 @@ export const Server = {
         fxml.dispatchEvent('readystatechange');
     }
     else if(data){
+      console.log("from get data",data)
       fxml.response = itemCrud.getItemsToCleanByID(data); //data is json object
       if(fxml.response){
         fxml.status = 200;
@@ -41,6 +46,8 @@ export const Server = {
     console.log("fxmlinpost:",fxml)
     if (fxml.url === 'families') { // Check if the URL is for retrieving families
       familyCrud.addFamily(data); //data is json object
+      fxml.responseType = 'json';
+
       fxml.status  = 200;
       fxml.readyState = 4;
       fxml.dispatchEvent('readystatechange');

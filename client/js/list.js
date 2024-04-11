@@ -56,18 +56,23 @@ function renderItems(Items, children) {
     const select = document.createElement("select");
     select.classList.add("glowing-border");
 
-    // Create options for responsible and children
-    const responsibleOption = document.createElement("option");
-    responsibleOption.value = "0"; // You may want to assign appropriate values
-    responsibleOption.textContent = item.responsible;
-    select.appendChild(responsibleOption);
 
     children.forEach((child, index) => {
       const childOption = document.createElement("option");
-      childOption.value = index + 1; // You may want to assign appropriate values
+      childOption.value = child; // You may want to assign appropriate values
       childOption.textContent = child;
       select.appendChild(childOption);
     });
+
+        // Add event listener to select element
+        select.addEventListener('change', function(event) {
+
+          // update child responsible for item
+
+          
+          console.log("Selected option changed");
+          console.log("Selected value:", event.target.value);
+      });
 
     // Create div for cancel-confirm buttons
     const buttonsDiv = document.createElement("div");
@@ -77,11 +82,21 @@ function renderItems(Items, children) {
     confirmImg.src = "/client/img/confirm-icon.png";
     confirmImg.alt = "השלם משימה";
     confirmImg.id = "confirm-btn"; // Note: IDs should be unique in HTML document
+      confirmImg.addEventListener('click', function(event) {
+        // update finish time for item
+        console.log("Confirm button clicked");
+            }      );
+
 
     const cancelImg = document.createElement("img");
     cancelImg.src = "/client/img/cancel-icon.png";
     cancelImg.alt = "ביטול";
     cancelImg.id = "cancel-btn"; // Note: IDs should be unique in HTML document
+
+    cancelImg.addEventListener('click', function(event) {
+      // delete item from list
+      console.log("Cancel button clicked");
+    });
 
     // Append elements to respective parents
     buttonsDiv.appendChild(confirmImg);
@@ -127,7 +142,7 @@ window.addEventListener('message', function (event) {
     fxml.addEventListener('readystatechange', () => {
       if (fxml.readyState == 4 && fxml.status == 200) {
 
-        const ItemsforServer = JSON.parse(fxml.response);
+        const ItemsforServer = fxml.response;
 
         // //const ItemsforServer = [{ family_id: 1, itemName: "קומקום", image: "../client/img/נקה ביתך לפסח (5).png", responsible: "שי", finishTime: null },
         // { family_id: 1, itemName: "מיקרוגל", image: "../client/img/נקה ביתך לפסח (6).png", responsible: "רון", finishTime: null },
