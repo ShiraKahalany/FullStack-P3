@@ -1,3 +1,5 @@
+import { FXMLHttpRequest } from './FXMLHttpRequest.js';
+
 function addStartIndicateToDate(date) {
     const element = document.getElementById(date);
     if (element) {
@@ -12,7 +14,7 @@ function addStarToDates(dates) {
     dates.forEach(date => {
         const element = document.getElementById(date);
         if (element) {
-        const contentDiv = element.querySelector('.day-content');
+            const contentDiv = element.querySelector('.day-content');
             if (contentDiv) {
                 contentDiv.innerHTML += '<img class="star" src="../img/star.png" alt="כוכב">';
             }
@@ -20,7 +22,7 @@ function addStarToDates(dates) {
     });
 }
 
-function indicateToday()    {
+function indicateToday() {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -32,9 +34,53 @@ function indicateToday()    {
 
 }
 
-indicateToday();
+var my_family;
 
-var start_date=null;
+window.addEventListener('message', function (event) {
+    if (event.data === 'render-yourself') {
+        my_family = parent.family;
+        console.log("from sche: ", my_family);
+        console.log("Message received from the parent: " + event.data); // Message received from parent
+        indicateToday();
+
+        if (my_family)
+            var start_date = new Date(parent.family.startTime);
+        if (start_date) {
+            const year = start_date.getFullYear();
+            const month = String(start_date.getMonth() + 1).padStart(2, '0');
+            const day = String(start_date.getDate()).padStart(2, '0');
+            addStartIndicateToDate(`${year}-${month}-${day}`);
+
+        }
+        else
+            addStartIndicateToDate('2024-03-31');
+
+        var finish_dates_array = [];
+        var my_family_id = parent.family.family_id;
+
+        var itemsRequest = new FXMLHttpRequest();
+        itemsRequest.open('GET', 'items', true);
+        itemsRequest.addEventListener('readystatechange', () => {
+            if (itemsRequest.readyState == 4 && itemsRequest.status == 200) {
+                console.log("from sche: ", itemsRequest.response);
+                var items = (itemsRequest.response);
+                items.forEach(item => {
+                    if (item.family_id === my_family_id && item.finishTime) {
+                        finish_dates_array.push(item.finishTime);
+                    }
+                });
+                addStarToDates(finish_dates_array);
+            }
+            else if (itemsRequest.status === 4 && itemsRequest.status != 200) {
+                alert("שגיאה בקבלת המידע מהשרת");
+            }
+        });
+        itemsRequest.send({id: my_family_id});
+    }
+});
+
+
+
 
 // if(family)
 //     start_date=family.startTime;

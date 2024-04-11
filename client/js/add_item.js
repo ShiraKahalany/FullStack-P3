@@ -8,14 +8,14 @@ window.addEventListener('message', function(event) {
 
 
     const images = [
-      '../img/item1.png',
-      '../img/item2.png',
-      '../img/item3.png',
-      '../img/item4.png',
-      '../img/item5.png',
-      '../img/item6.png',
-      '../img/item7.png',
-      '../img/item8.png',
+      '/client/img/item1.png',
+      '/client/img/item2.png',
+      '/client/img/item3.png',
+      '/client/img/item4.png',
+      '/client/img/item5.png',
+      '/client/img/item6.png',
+      '/client/img/item7.png',
+      '/client/img/item8.png',
     ]
 
     var index = 0;
@@ -92,7 +92,7 @@ window.addEventListener('message', function(event) {
 
     function buildItemObject() {
       const itemName = document.getElementById('itemName').value;
-      const selectedImageSrc = selectedImage !== undefined ? images[selectedImage] : "../img/default-item-image.png";
+      const selectedImageSrc = selectedImage !== undefined ? images[selectedImage] : "/client/img/deafult-item-image.png";
       const responsibleIndex = document.getElementById('item-responsible').selectedIndex;
       const responsible = family.familyChildren[responsibleIndex];
       const finishTime = null;
@@ -123,6 +123,8 @@ window.addEventListener('message', function(event) {
         });
         request.open('POST', 'itemsToClean', true);
         request.send(JSON.stringify(newItem));
+
+        selectedImage=null;
       // addItemToClean(newItem);
       // window.location.href = "./DBud.html?family=" + encodeURIComponent(JSON.stringify(family));
     });
