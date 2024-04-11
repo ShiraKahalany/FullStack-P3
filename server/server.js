@@ -5,11 +5,11 @@ import { SendForServerToNetwork } from '../network.js'
 export const Server = {
   GET: (fxml, data) => {
     if (fxml.url === 'families') { // Check if the URL is for retrieving families
+      if(data === null){
       const families = familyCrud.getAllFamilies(); //families is json object
       // console.log('GET families called', families);
       fxml.response = families;
       fxml.responseType = 'json';
-
 
       if(fxml.response){
         fxml.status = 200;
@@ -17,6 +17,18 @@ export const Server = {
         fxml.dispatchEvent('readystatechange');
       }
       console.log('fxml.response :',fxml.response);
+    }
+    else if(data){
+      fxml.response = familyCrud.getFamilyByID(data); //families is json object
+      // console.log('GET families called', families);
+      fxml.responseType = 'json';
+
+      if(fxml.response){
+        fxml.status = 200;
+        fxml.readyState = 4;
+        fxml.dispatchEvent('readystatechange');
+      }
+    }
   }
   
   else if (fxml.url === 'itemsToClean') { 
@@ -67,6 +79,12 @@ export const Server = {
       fxml.readyState = 4;
       fxml.dispatchEvent('readystatechange');
     }
+    else if (fxml.url === 'itemsToClean') { // Check if the URL is for retrieving families
+      itemCrud.updateItemToClean(data); //data is json object
+      fxml.status  = 200;
+      fxml.readyState = 4;
+      fxml.dispatchEvent('readystatechange');
+    } 
   },
   
   DELETE: (fxml, data) => {
@@ -76,6 +94,12 @@ export const Server = {
       fxml.readyState = 4;
       fxml.dispatchEvent('readystatechange');
     }
+    else if (fxml.url === 'itemsToClean') { // Check if the URL is for retrieving families
+      itemCrud.deleteItemToClean(data); //data is json object
+      fxml.status  = 200;
+      fxml.readyState = 4;
+      fxml.dispatchEvent('readystatechange');
+    } 
   }
 };
 

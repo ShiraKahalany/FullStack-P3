@@ -59,11 +59,11 @@ window.addEventListener('message', function (event) {
         var my_family_id = parent.family.family_id;
 
         var itemsRequest = new FXMLHttpRequest();
-        itemsRequest.open('GET', 'items', true);
+        itemsRequest.open('GET', 'itemsToClean', true);
         itemsRequest.addEventListener('readystatechange', () => {
             if (itemsRequest.readyState == 4 && itemsRequest.status == 200) {
-                console.log("from sche: ", itemsRequest.response);
-                var items = (itemsRequest.response);
+                console.log("from sche: ", JSON.parse(itemsRequest.response));
+                var items = JSON.parse(itemsRequest.response);
                 items.forEach(item => {
                     if (item.family_id === my_family_id && item.finishTime) {
                         finish_dates_array.push(item.finishTime);

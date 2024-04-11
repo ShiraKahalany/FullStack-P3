@@ -19,6 +19,18 @@ function login() {
         return;
     }
 
+    // Validate family name (only letters)
+    if (!/^[a-zA-Zא-ת]+$/.test(familyName)) {
+        alert("שם המשפחה יכול להכיל רק אותיות"); // Display an alert if family name contains other characters
+        return;
+    }
+
+    // Validate password (at least 6 numbers)
+    if (!/^\d{6,}$/.test(password)) {
+        alert("הסיסמא חייבת להכיל לפחות 6 ספרות"); // Display an alert if password doesn't meet the requirement
+        return;
+    }
+
     var request = new FXMLHttpRequest();
     request.addEventListener('readystatechange', () => {
         if (request.readyState == 4 && request.status == 200) {

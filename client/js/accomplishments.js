@@ -32,7 +32,7 @@ fourboyRequest.open('GET', 'families', true);
 fourboyRequest.send(JSON.stringify(my_family));
 fourboyRequest.onreadystatechange = function () {
     if (fourboyRequest.readyState == 4 && fourboyRequest.status == 200) {
-        console.log("from accom: ",fourboyRequest.response);
+        console.log("from accom: ",JSON.parse(fourboyRequest.response));
     }
 
 }
