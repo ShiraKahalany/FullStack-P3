@@ -7,6 +7,9 @@ function renderItems(Items, children) {
   // Assuming you have a container element with id "itemsContainer" in your HTML
   const itemsContainer = document.getElementById("itemsGrid");
 
+  itemsContainer.innerHTML = '';
+
+
   // <div class="item">
   //     <img src="/client/img/item4.png" alt="מקרר">
   //     <span>מקרר</span>
@@ -27,6 +30,7 @@ function renderItems(Items, children) {
   //   </div>
   // Iterate over each item in the Items array
   Items.forEach(item => {
+    if(item.finishTime === null) {
     // Create a new div element for the item
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("item");
@@ -57,6 +61,11 @@ function renderItems(Items, children) {
     select.classList.add("glowing-border");
 
 
+    const responsibleOption = document.createElement("option");
+responsibleOption.value = item.responsible; // You may want to assign appropriate values
+responsibleOption.textContent = item.responsible;
+select.appendChild(responsibleOption);
+
     children.forEach((child, index) => {
       const childOption = document.createElement("option");
       childOption.value = child; // You may want to assign appropriate values
@@ -68,6 +77,20 @@ function renderItems(Items, children) {
         select.addEventListener('change', function(event) {
 
           // update child responsible for item
+
+          item.responsible = event.target.value;
+
+          var updateRequestResponsible = new FXMLHttpRequest();
+          updateRequestResponsible.addEventListener('readystatechange', () => {
+            if (updateRequestResponsible.readyState == 4 && updateRequestResponsible.status == 200) {
+              console.log("Item updated successfully");
+            }
+            else if (updateRequestResponsible.status === 4 && updateRequestResponsible.status != 200) {
+              alert("שגיאה בעדכון האחראי");
+            }
+          });
+          updateRequestResponsible.open('PUT', 'itemsToClean', true);
+          updateRequestResponsible.send(JSON.stringify(item));
 
           
           console.log("Selected option changed");
@@ -84,6 +107,32 @@ function renderItems(Items, children) {
     confirmImg.id = "confirm-btn"; // Note: IDs should be unique in HTML document
       confirmImg.addEventListener('click', function(event) {
         // update finish time for item
+
+        var now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            item.finishTime =  `${year}-${month}-${day}`;
+            console.log("finish time:", item.finishTime);
+
+        var updateRequest = new FXMLHttpRequest();
+        updateRequest.addEventListener('readystatechange', () => {
+          if (updateRequest.readyState == 4 && updateRequest.status == 200) {
+            
+
+
+            console.log("Item updated successfully");
+            alert("כל הכבוד! המשימה הושלמה בהצלחה")
+          }
+          else if (updateRequest.status === 4 && updateRequest.status != 200) {
+            alert("שגיאה בעדכון המשימה");
+          }
+        });
+        updateRequest.open('PUT', 'itemsToClean', true);
+        
+        updateRequest.send(JSON.stringify(item));
+
+
         console.log("Confirm button clicked");
             }      );
 
@@ -95,6 +144,19 @@ function renderItems(Items, children) {
 
     cancelImg.addEventListener('click', function(event) {
       // delete item from list
+
+      var deleteRequest = new FXMLHttpRequest();
+      deleteRequest.addEventListener('readystatechange', () => {
+        if (deleteRequest.readyState == 4 && deleteRequest.status == 200) {
+          console.log("Item deleted successfully");
+          alert("המשימה בוטלה בהצלחה")
+        }
+        else if (deleteRequest.status === 4 && deleteRequest.status != 200) {
+          alert("שגיאה בביטול המשימה");
+        }
+      });
+      deleteRequest.open('DELETE', 'itemsToClean', true);
+      deleteRequest.send(JSON.stringify(item));
       console.log("Cancel button clicked");
     });
 
@@ -113,7 +175,9 @@ function renderItems(Items, children) {
     itemDiv.appendChild(overlayDiv);
 
     itemsContainer.appendChild(itemDiv);
+  }
   });
+
   items = document.querySelectorAll('.item');
 }
 

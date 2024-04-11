@@ -1,5 +1,7 @@
 import { FXMLHttpRequest } from "./FXMLHttpRequest.js";
 
+function SetFourBoy() {
+
 let values = [
     { id: "smart-boy", n: 0, man: "" },
     { id: "evil-boy", n: 0, man: "" },
@@ -24,16 +26,28 @@ function changeNValue(boyId, newValue) {
     }
 }
 
+function changeMANValue(boyId, newValue) {
+    const value = values.find(value => value.id === boyId);
+    if (value) {
+        value.man = newValue;
+        const boy = document.getElementById(boyId);
+        boy.querySelector('h2').textContent = `${newValue} פריטים`;
+    }
+}
+
 
 var my_family = parent.family;
 
 var fourboyRequest = new FXMLHttpRequest();
-fourboyRequest.open('GET', 'families', true);
-fourboyRequest.send(JSON.stringify(my_family));
+fourboyRequest.open('GET', 'itemsToClean', true);
+fourboyRequest.send(JSON.stringify(my_family.family_id));
+
 fourboyRequest.onreadystatechange = function () {
     if (fourboyRequest.readyState == 4 && fourboyRequest.status == 200) {
         console.log("from accom: ",JSON.parse(fourboyRequest.response));
     }
+
+}
 
 }
 
@@ -45,7 +59,7 @@ window.addEventListener('message', function(event) {
         my_family = parent.family;
         console.log("from accom: ",my_family);
         console.log("Message received from the parent: " + event.data); // Message received from parent
-
+        SetFourBoy();
     }
   });
 

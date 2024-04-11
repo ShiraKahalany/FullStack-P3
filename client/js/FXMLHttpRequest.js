@@ -101,7 +101,6 @@ export class FXMLHttpRequest {
         // this.readyState = 2;
         // console.log(this,data);
         sendToNetwork(this, data);
-        return this;       
     }
 
     abort() {
